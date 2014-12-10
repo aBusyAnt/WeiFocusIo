@@ -17,6 +17,8 @@ author :
 #  twitter : username
 #  feedburner : feedname
 
+excerpt_separator: <!--more-->
+
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
 # Most places will/should use BASE_PATH to make the urls
@@ -79,18 +81,18 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
-    disqus :
-      short_name : jekyllbootstrap
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
+    provider : duoshuo
+    duoshuo :
+      short_name : weifocusio
+#    livefyre :
+#      site_id : 123
+#    intensedebate :
+#      account : 123abc
+#    facebook :
+#      appid : 123
+#      num_posts: 5
+#      width: 580
+#      colorscheme: light
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
