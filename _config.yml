@@ -26,7 +26,6 @@ author :
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
 production_url : http://GrayLuo.github.io
-baseurl:/WeiFocusIo
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
