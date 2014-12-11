@@ -33,7 +33,7 @@ tagline: 移动互联网实战
   <div class="entry">
     {{ post.content | split: '<!--more-->' | first }}
     <p>
-      <a href="{{ post.url }}/#more" class="more-link btn">
+      <a href="{{ BASE_PATH }}{{ post.url }}/#more" class="more-link btn">
         <span class="readmore">阅读全文 »</span>
       </a>
     </p>
@@ -41,7 +41,6 @@ tagline: 移动互联网实战
 </div>
 <br />
 {% endfor %}
-<!-- Pagination links -->
 <!-- Pagination links -->
 <div id="post-pagination" class="pagination">
  <ul class="pages">
