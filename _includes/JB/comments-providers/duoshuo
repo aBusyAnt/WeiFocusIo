@@ -1,4 +1,5 @@
 <div class="comments">
-  <div class="ds-thread" data-title="{{ page.title }}" data-thread-key="{{ page.id }}" data-url="{{ site.blog.url }}{{ page.url }}"></div>
+	address: {{ site.production_url }}{{ site.JB.BASE_PATH }}{{ page.url }}
+  <div class="ds-thread" data-title="{{ page.title }}" data-thread-key="{{ page.id }}" data-url="{{ site.production_url }}{{ site.JB.BASE_PATH }}{{ page.url }}"></div>
 </div>
 
