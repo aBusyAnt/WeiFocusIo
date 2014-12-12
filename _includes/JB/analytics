@@ -11,8 +11,6 @@
   {% include JB/analytics-providers/piwik %}
 {% when "custom" %}
   {% include custom/analytics %}
-{% when "baidu" %}
-  {% include JB/analytics-providers/baidu %}
 {% endcase %}
 
 {% endif %}
