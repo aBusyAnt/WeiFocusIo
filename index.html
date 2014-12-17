@@ -11,17 +11,14 @@ tagline: 移动互联网实战
     <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
   </h2>
   <div class="entry-meta">
-      <i class="icon-user"></i>  <span>{{ post.author }}</span>  
-      <i class="icon-calendar"></i>  <span>{{ post.date | date:"%Y-%m-%d" }}</span>  
-      {% unless post.categories == empty %}
-        <i class="icon-bookmark"></i>
-        {% for category in post.categories %}
-          <a href="/categories.html#{{ category }}-ref" target="_blank">
-            <span class="label post-category">{{ category }}</span>
-          </a>
-        {% endfor %}
-      {% endunless %}
-        
+       <p class="post-meta">
+       <i class="icon-user"></i>  <span>{{ site.author.name }}</span>  
+        <i class="fa fa-calendar"></i>
+        {{ post.date | date: "%Y" }}年{{ post.date | date: "%m" }}月{{ post.date | date: "%d" }}日
+        <i class="space"></i>
+        <i class="fa fa-tags"></i>
+        <a class="post-category" href="/categories.html#{{ post.categories }}-ref">{{ post.categories }}</a>
+      </p>        
       {% unless post.tags == empty %}
         <i class="icon-tag"></i>
         {% for tag in post.tags %}

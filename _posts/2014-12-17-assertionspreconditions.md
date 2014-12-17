@@ -2,7 +2,7 @@
 layout: post
 title: "断言与前置条件"
 description: ""
-category: "Swift"
+categories: ["Swift"]
 tags: []
 ---
 {% include JB/setup %}
@@ -53,7 +53,7 @@ println("precondition passwd ,\(x) less than -9")
 3。 由于Swift提供了Option选项，但是后续的代码需要其值不能为nil时；
 
 参考：  
-本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，在此对写作过程中参考了的文章作者表示感谢！ 
+本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
 
 > * http://www.raywenderlich.com/82572/swift-generics-tutorial
 > * http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/
