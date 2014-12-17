@@ -39,16 +39,11 @@ precondition(x < -9 )
 println("precondition passwd ,\(x) less than -9")
 
 {% endhighlight %}
-当前编译版本为DEBUG版本时，可以看到结果会输出：   
+> * 当前编译版本为DEBUG版本时，可以看到结果会输出： <span style="color: red;">assertion failed: : .......</span>
+> * 当前编译版本为Release版本时，输出为：<span style="color: red;">assert passed,1 is less than zero</span> 
+> * 切换方式：Product -> Scheme -> Edit Scheme -> Run  -> info -> Build Configuration
 
-> <span style="color: red;">assertion failed: : .......</span>
-
-当前编译版本为Release版本时，输出为：   
-
-> <span style="color: red;">assert passed,1 is less than zero</span> 
-
-切换方式：Product -> Scheme -> Edit Scheme -> Run  -> info -> Build Configuration
-
-![github]({{ site.attachment }}/posts/Snip20141217_1.png "github")
-
-
+综上，那什么时候使用Assert与precondition呢？
+1. 当使用一个不确定是否越界的数组下标时；
+2. 当接收到的值无法确定是否符合要求时；
+3。 由于Swift提供了Option选项，但是后续的代码需要其值不能为nil时；
