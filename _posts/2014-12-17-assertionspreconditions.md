@@ -26,7 +26,10 @@ func assert(condition: @autoclosure () -> Bool, _ message: @autoclosure () -> St
 
 > 贴心提示：
 >  StaticString是一种内部使用的String,其实字符串类型有几种类型，包括：
->  <p>String ; Character Unicode 字符 ; UnicodeScalar 相当于 C 中的 wchar_t ; CString 用于表示 C 中的 const char * ; StaticString 静态字符串，内部使用，例如 fatalError </p>
+> * String ; Character Unicode 字符 ; 
+> * UnicodeScalar 相当于 C 中的 wchar_t ;
+> * CString 用于表示 C 中的 const char * ; 
+> * StaticString 静态字符串，内部使用，例如 fatalError
 
 搞明白了什么是断言与前置条件，我们来实际应用一下：
 {% highlight Swift %}
@@ -47,3 +50,4 @@ println("precondition passwd ,\(x) less than -9")
 1. 当使用一个不确定是否越界的数组下标时；
 2. 当接收到的值无法确定是否符合要求时；
 3。 由于Swift提供了Option选项，但是后续的代码需要其值不能为nil时；
+
