@@ -25,11 +25,11 @@ func assert(condition: @autoclosure () -> Bool, _ message: @autoclosure () -> St
 从中，我们可以看到其实assert仅仅是添加了一个DEBUG宏进行了编译条件的判断而以。第一个参数是条件，第二个参数是一个可选的描述字符串，后面两个参数默认是调用者的上下文位置.
 
 > 贴心提示：
->  StaticString是一种内部使用的String,其实字符串类型有几种类型，包括：
-> * String ; Character Unicode 字符 ; 
-> * UnicodeScalar 相当于 C 中的 wchar_t ;
-> * CString 用于表示 C 中的 const char * ; 
-> * StaticString 静态字符串，内部使用，例如 fatalError
+>  StaticString是一种内部使用的String,其实字符串类型有几种类型，包括：  
+>  String ; Character Unicode 字符 ;   
+>  UnicodeScalar 相当于 C 中的 wchar_t ;  
+>  CString 用于表示 C 中的 const char * ;   
+>  StaticString 静态字符串，内部使用，例如 fatalError  
 
 搞明白了什么是断言与前置条件，我们来实际应用一下：
 {% highlight Swift %}
