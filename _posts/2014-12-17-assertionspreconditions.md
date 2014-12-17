@@ -47,7 +47,13 @@ println("precondition passwd ,\(x) less than -9")
 > * 切换方式：Product -> Scheme -> Edit Scheme -> Run  -> info -> Build Configuration
 
 综上，那什么时候使用Assert与precondition呢？
+
 1. 当使用一个不确定是否越界的数组下标时；
 2. 当接收到的值无法确定是否符合要求时；
 3。 由于Swift提供了Option选项，但是后续的代码需要其值不能为nil时；
 
+参考：  
+本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，在此对写作过程中参考了的文章作者表示感谢！ 
+
+> * http://www.raywenderlich.com/82572/swift-generics-tutorial
+> * http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/
