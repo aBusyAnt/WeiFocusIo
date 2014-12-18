@@ -6,7 +6,7 @@
   <div class="col-xs-12">
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
-        <a class="post-category" href="/categories.html#{{ page.categories }}-ref">{{ page.categories }}</a>
+        <a class="post-category" href="{{ BASE_PATH }}/categories.html#{{ page.categories }}-ref">{{ page.categories }}</a>
     </div>
     <div class="content">
       {{ content }}
