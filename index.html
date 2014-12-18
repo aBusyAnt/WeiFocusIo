@@ -17,7 +17,7 @@ tagline: 移动互联网实战
         {{ post.date | date: "%Y" }}年{{ post.date | date: "%m" }}月{{ post.date | date: "%d" }}日
         <i class="space"></i>
         <i class="fa fa-tags"></i>
-        <a class="post-category" href="/categories.html#{{ post.categories }}-ref">{{ post.categories }}</a>
+        <a class="post-category" href="{{ BASE_PATH }}/categories.html#{{ post.categories }}-ref">{{ post.categories }}</a>
       </p>        
       {% unless post.tags == empty %}
         <i class="icon-tag"></i>
