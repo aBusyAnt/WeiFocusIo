@@ -12,7 +12,7 @@ tags: []
 
 <!--more-->
 先来看一个基本类型的定义
-{% highlight Swift %}
+{% highlight swift %}
 enum EnumTest: String {
     case sss = "sss"
     case ddd = "ddd"
@@ -24,7 +24,7 @@ println(enumVar.rawValue)
 {% endhighlight %}
 
 我们来看一个多类型的示例：
-{% highlight Swift %}
+{% highlight swift %}
 enum Barcode {
   case UPCA(Int, Int, Int)
   case QRCode(String)
@@ -45,7 +45,7 @@ case .QRCode(let productCode):
 小技巧 ：
 
 > 如果一个枚举成员的所有相关值被提取为常量，或者它们全部被提取为变量，为了简洁，你可以只放置一个var或者let标注在成员名称前：
-	{% highlight Swift %}
+	{% highlight swift %}
 switch productBarcode {
 case let .UPCA(numberSystem, identifier, check):
     println("UPC-A with value of \(numberSystem), \(identifier), \(check).")
@@ -56,7 +56,7 @@ case let .QRCode(productCode):
 {% endhighlight %}
 
 看完了基本类型的各种使用，我们来看一个自定义类作为枚举成员的示例，其定义方式跟上面的基本类型是一致的，就不啰嗦了，自己看下代码：
-{% highlight Swift %}
+{% highlight swift %}
 class Car{
     var engine:String
     var gearbox:String
@@ -91,7 +91,7 @@ switch (vehicle) {
 {% endhighlight %}
 
 还有一个比较好的枚举应用场景，就是对数据查询的时候，我们会有两种情况，一个是Found，就直接返回相应结果，另一个就是NotFound,在这里，我们使用闭包进行回调处理，比如进行UITableView的刷新等操作。
-{% highlight Swift %}
+{% highlight swift %}
 class Horse{
     var eyesCount:Int
     var legsCount:Int

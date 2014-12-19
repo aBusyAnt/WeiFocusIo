@@ -12,7 +12,7 @@ tags: []
 二者完全是实现相同功能，只是应用场景有所不同而以，assertions用于开发阶段使用，也就是说使用xcode编译时，如果编译设置为Debug版本，则assertions会被正常编入该版本，如果设置为Release版本，则assertions语句将不会编入。xcode默认设置为联机调试过程为Debug版本，发布为Release版本。</p>
 <!--more-->
 我们先看一下assertions的定义：
-{% highlight Swift %}
+{% highlight swift %}
 func assert(condition: @autoclosure () -> Bool, _ message: @autoclosure () -> String = default, file: StaticString = default, line: UWord = default){
       #if DEBUG
           if !condition() {
@@ -32,7 +32,7 @@ func assert(condition: @autoclosure () -> Bool, _ message: @autoclosure () -> St
 >  StaticString 静态字符串，内部使用，例如 fatalError  
 
 搞明白了什么是断言与前置条件，我们来实际应用一下：
-{% highlight Swift %}
+{% highlight swift %}
 
 let x = 1
 assert(x<0)
