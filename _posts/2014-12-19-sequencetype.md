@@ -64,7 +64,7 @@ for item in stackOfStrings{
     println(item)
 }
 {% endhighlight %}
-编译器抛出了错误：<span style="color: red;">'Stack<String>' does not have a member named 'Generator'</span>
+编译器抛出了错误：<span style="color: red;">  'Stack<String>' does not have a member named 'Generator'  </span>
 
 这个错误就是写本文的目的，我们来添加上序列化代码：
 {% highlight swift %}
