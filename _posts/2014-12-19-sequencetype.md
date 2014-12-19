@@ -65,7 +65,8 @@ for item in stackOfStrings{
 }
 {% endhighlight %}
 编译器抛出了错误：<span style="color: red;">'Stack<String>' does not have a member named 'Generator'</span>
-我们再添加上序列化代码：
+
+这个错误就是写本文的目的，我们来添加上序列化代码：
 {% highlight swift %}
 extension Stack : SequenceType{
     func generate() -> GeneratorOf<T> {
