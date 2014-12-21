@@ -156,11 +156,11 @@ class ViewController: UIViewController {
 程序执行结果只会输出：I am bob  
 什么原因？看下图的对象引用关系：  
 
-<img src="{{ site.attachment }}/posts/Snip20141221_1.png" align="center" width="200" height="100">  
+<img src="{{ site.attachment }}/posts/Snip20141221_1.png" align="center" width="400" height="150">  
 
 很明显的相互引用导致的引用循环，从而viewDidLoad执行完成过后，局部变量Person应该被销毁，ViewConroller没有了person的引用，但还有一个闭包却在引用，结果对象引用关系就变成了这样的：  
 
-<img src="{{ site.attachment }}/posts/Snip20141221_2.png" align="center" width="200" height="100">  
+<img src="{{ site.attachment }}/posts/Snip20141221_2.png" align="center" width="400" height="150">  
 
 问题与Object-C中是一样的，当然解决办法也一样,将闭包更新一下：
 {% highlight swift %}
