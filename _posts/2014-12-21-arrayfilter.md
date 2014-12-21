@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "数组过滤器与归约"
+title: "数组常用操作技巧"
 description: ""
 category: "Swift"
 tags: []
