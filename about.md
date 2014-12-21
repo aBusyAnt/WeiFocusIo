@@ -20,9 +20,7 @@ description: ""
 				在这里，我主要使用Swift进行iOS端的开发，用LAMP进行服务端开发，从项目的需求开始一步一步构建完整的项目，希望能够有帮到你的片段。
 			</p>
             <div>
-                工作联系：<br>     
-                邮件：<a href="mailto:guohui.great@gmail.com">点击发送邮件</a> <br>   
-                微博私信：[@WeiFocus](http://www.weibo.com/weifocusio)  
+            工作联系：<a href="mailto:guohui.great@gmail.com">点击发送邮件</a>   ,  <a href="http://www.weibo.com/weifocusio">微博私信</a>
             </div>>
 </section>    
 </div>
