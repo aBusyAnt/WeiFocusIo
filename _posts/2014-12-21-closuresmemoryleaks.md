@@ -52,6 +52,8 @@ typedef NS_ENUM(NSInteger, ResultCode){
 - (IBAction)backAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+@end
+
 {% endhighlight %}
 在父VC中我们定义BlockTestVc,并传入block响应操作：
 {% highlight Objective-C %}
@@ -84,7 +86,6 @@ typedef NS_ENUM(NSInteger, ResultCode){
     [self presentViewController:testVc animated:YES completion:nil];
 }
 
-@end
 {% endhighlight %}
 
 看起来没问题？编译器已经发现了问题：
