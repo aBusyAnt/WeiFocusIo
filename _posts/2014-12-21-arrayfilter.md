@@ -123,7 +123,7 @@ let numberPrinter = array.reduce("numbers:"){
 }
 println(numberPrinter)
 {% endhighlight %}
-这个例子中reduce的初始值为String,返回的也是String。
+这个例子中reduce的初始值为String,返回的也是String。   
 最后我们再来画蛇添足一下，换一种方式,我们不使用Array提供的标准函数，而自定义一个Reduce，就像上面的myGenericsFilter类似一样，我们按上面的例子要实现的目的来自己定义一个Reduce函数，仅仅是为了更好的理解，但是实际上一般情况下我们使用Array提供的函数完全足够：
 {% highlight swift %}
 extension Array{
