@@ -21,6 +21,6 @@ description: ""
 			</p>
             <div>
             工作联系：<a href="mailto:guohui.great@gmail.com">点击发送邮件</a>   ,  <a href="http://www.weibo.com/weifocusio">微博私信</a>
-            </div>>
+            </div>
 </section>    
 </div>
