@@ -8,8 +8,8 @@ tags: []
 {% include JB/setup %}
 
 本文重点在于探讨数组的常用操作，对其中的过滤器与归约的关注多一些，我们先来看一下Array的一些常用操作，这些操作都有一些通用的特性，理解了其中一个，其它也就类推即可。
-先看一下常用操作,闭包的使用请参考：[闭包](http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/chapter2/07_Closures.html)：
 <!--more-->
+先看一下常用操作,闭包的使用请参考：[闭包](http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/chapter2/07_Closures.html)：
 1.排序,Sort:
 {% highlight swift %}
 var array = [1,2,3,4,5]
