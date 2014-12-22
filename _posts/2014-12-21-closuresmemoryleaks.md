@@ -186,6 +186,7 @@ OK,输出正常，但愿你一切都明了～
 
 > * http://www.raywenderlich.com/store/swift-by-tutorials
 > * http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/chapter2/07_Closures.html
+> * http://grayluo.github.io/WeiFocusIo/swift/2014/12/21/arrayfilter/
 
 
 
