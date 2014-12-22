@@ -53,7 +53,7 @@ let x = array.filter{$0 % 2 == 0}
 println(x)
 {% endhighlight %}
 
-6.Slice,这个特性很有意思,算一个惊喜吧，留在下一篇来讨论：[Slice]({{ production_url }}/2014/12/21/slice/).
+6.Slice,这个特性很有意思,算一个惊喜吧，留在下一篇来讨论：[Slice](http://grayluo.github.io/WeiFocusIo/swift/2014/12/21/slice/).
 
 通过以上的例子我们可以看到Array提供的这些常用方法使用的模式都差不多，我们来重点讨论两个。
 先看过滤器：
