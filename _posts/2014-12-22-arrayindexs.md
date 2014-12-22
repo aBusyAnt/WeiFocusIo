@@ -73,7 +73,7 @@ typealias Entry = (Character,[String])
 > [(Z, [张三, 张四, 张三疯, 扎克]), (Y, [杨树]), (L, [李五, 拉里, 李彦宏, 柳传志]), (W, [王麻子, 未来的你]), (Q, [乔布斯]), (B, [比尔盖茨]), (K, [库克]), (M, [马云, 马化腾])]  
 > 好像一切还挺不错。
 
-但是有没有看到这个代码有点丑 ？不太优雅，根据之前的泛型与数组的常用操作，我们可以弄进一下代码：
+但是有没有看到这个代码有点丑 ？不太优雅，根据之前的泛型与数组的常用操作，我们可以改进一下代码：
 {% highlight swift %}
     typealias Entry = (Character,[String])
     func distinct<T:Equatable>(source:[T]) -> [T]{
@@ -120,5 +120,5 @@ typealias Entry = (Character,[String])
 
 > * http://www.raywenderlich.com/store/swift-by-tutorials
 > * http://numbbbbb.gitbooks.io/-the-swift-programming-language-/content/chapter2/07_Closures.html
-> * 
+> * http://grayluo.github.io/WeiFocusIo/swift/2014/12/21/arrayfilter/
 
