@@ -7,8 +7,10 @@ tags: []
 ---
 {% include JB/setup %}
 
-我们采用LAMP的架构进行开发，即Linux+Apache+MySQL+PHP,其中的Linux在这里我们用Mac替代，如果使用Linux，请参考<a href="{{ site.attachment }}/files/j2ee_lamp_install.txt"> 这篇文档</a>。
+我们采用LAMP的架构进行开发，即Linux+Apache+MySQL+PHP,其中的Linux在这里我们用Mac替代，如果使用Linux，
 <!--more-->
+请参考<a href="{{ site.attachment }}/files/j2ee_lamp_install.txt"> 这篇文档</a>。
+
 一.Apache配置  
 
 1、测试，在浏览器里访问http://localhost，正常显示"It wordks !"  
