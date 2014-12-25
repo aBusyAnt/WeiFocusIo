@@ -71,7 +71,7 @@ tags: []
 目前PHP暂时根本不需要配置，我们只需要直接使用其默认的配置文件即可：
 
 	sudo cp /etc/php.ini.default /etc/php.ini
-	
+
 添加一个php测试页面，将上面的index.html修改一下：
 
 	mv ~/Sites/index.html ~/Sites/index.php
@@ -82,6 +82,7 @@ tags: []
 正常显示 PHP 的相关信息就OK了。
 
 三、MySQL
+
 MySQL的配置太通用了，安装->配置用户名密码->设置相关用户的访问主机与权限，就这么简单就不浪费时间了。
 
 
