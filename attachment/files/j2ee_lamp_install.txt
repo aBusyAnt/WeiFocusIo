@@ -1,0 +1,190 @@
+
+J2ee与LAMP环境部署指南
+
+/*******************************************
+				作者:罗国辉(Gray.Luo)											
+				Email:guohui.luo@interfocus.cn	
+********************************************/
+
+
+本安装教程仅针对Redhat系列Linux系统，
+建议使用Redhat Enterprises版本（维护收费）或者 CentOS版本 （免费），
+并要求Linux kernel 2.6以上。
+并需要系统支持yum安装。
+
+说明 ：本文档安装服务器地址为http://210.51.7.37/，
+			如果你不是在该服务器安装则请更换以下文档中的地址。
+-----------------------------------------------------------
+1.安装、配置MySQL
+(1)安装MySQL服务端
+[root@localhost ~]# yum -y install mysql-server
+(2)安装MySQL客户端
+[root@localhost ~]# yum -y install mysql
+(3)设置MySQL自启动
+[root@localhost ~]# chkconfig mysqld on
+(4)MySQL自启动检查
+[root@localhost ~]# chkconfig --list mysqld
+mysqld         	0:off	1:off	2:on	3:on	4:on	5:on	6:off
+如果2--5为on的状态就OK
+(5)启动MySQL 服务
+[root@localhost ~]# service mysqld start
+//或者
+//[root@localhost ~]# /etc/rc.d/init.d/mysqld start
+--------
+(6)设置mysql数据库账号
+[root@localhost ~]# mysql -u root
+A.查询用户：
+mysql> select user,host,password from mysql.user;
++------+-----------------------+------------------+
+| user | host                  | password         |
++------+-----------------------+------------------+
+| root | localhost             | 6a1a6561373b2073 | 
+| root | localhost.localdomain |                  | 
+| root | 127.0.0.1             |                  | 
+|      | localhost             |                  | 
+|      | localhost.localdomain |                  | 
++------+-----------------------+------------------+
+B.为用户设置密码
+mysql> set password for root@localhost=password('fxpgycxtxdb');
+mysql> set password for root@localhost.localdomain=password('fxpgycxtxdb');
+mysql> set password for root@127.0.0.1=password('fxpgycxtxdb');
+C.登陆测试
+[root@localhost ~]# mysql -u root -h localhost -p
+Enter password: 
+D.删除匿名用户
+mysql> delete from mysql.user where user='';
+E.再查询用户
+mysql> select user,host from mysql.user;
++------+-----------------------+
+| user | host                  |
++------+-----------------------+
+| root | 127.0.0.1             | 
+| root | localhost             | 
+| root | localhost.localdomain | 
++------+-----------------------+
+D.退出mysql
+mysql> \q
+
+2.安装Apache Http Server
+(1)安装Apache
+[root@localhost ~]# yum install httpd
+(2)Apache自启动：
+[root@localhost ~]# chkconfig --levels 235 httpd on
+(3)启动apache
+[root@localhost ~]# /etc/init.d/httpd start 或者 用service httpd start
+Starting httpd:                                            [  OK  ]
+(4)添加防火墙规则，让apahce网站可以被访问
+[root@localhost ~]# iptables -I INPUT -p tcp --dport 80 -j ACCEPT  
+(5)使用浏览访问http://210.51.7.37/则可以看到apahce欢迎页面。
+
+3.安装Php
+(1)安装php
+[root@localhost ~]# yum install php
+(2)重新启动 Apache 服务，让apache加载php支持模块：
+[root@localhost ~]# /etc/init.d/httpd restart
+(3)测试 PHP 
+[root@localhost ~]# vi /var/www/html/info.php
+输入内容：
+<?php
+	phpinfo();
+?>
+然后在浏览器中打开http://210.51.7.37/info.php则可看到Php相关信息。
+
+
+4.将 PHP 模块和 MySQL 模块关联起来
+(1)先看一下有哪些相关的模块，先搜索一下：
+[root@localhost ~]# yum search php
+Oh,my god,可真不少，到底用哪个哟？看（2）吧。
+(2)安装一些必要有模块即可。
+[root@localhost ~]# yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc
+(3)再次重启apache,加载php与mysql相关的模块，即是一些动态链接库。
+[root@localhost ~]# /etc/init.d/httpd restart
+(4)再次打开http://210.51.7.37/info.php看一下是不是多了一些mysql相关的信息呀？
+如果没有，那说明你娃娃没认真搞，或者环境不一致或者有问题。
+
+
+5.安装Tomcat
+由于我们的项目中有时会同时使用Php与j2ee，So,我们两个环境都需要配置。
+(1)安装JDK,我们要开发j2ee的东西，当然需要java环境撒，那就开始搞吧！
+
+由于linux系统本身的openJDK性能与tomcat的兼容并不是很好，所以卸载openJDK,安装sun的jdk.
+找不到sun? 哎，曾经的日不落帝国，如今早已成为了历史，如今已被那该死的甲骨文捞了便宜。
+哎，你怎么骂人家oracle？开发人员没人谁不讨厌那封闭高傲的oracle，曾经的sun是那么牛逼的一家公司，
+sun对开源世界做了非常卓越的贡献，但愿java、solaris/opensolaris、openoffice、virtualbox,Mysql等等，
+这些开源世界伟大的发明别从此泯灭了。OK，Let's Go，开始卸载openJDK
+A.先看一下系统原版本
+[root@localhost local]# java -version
+java version "1.6.0_17"
+OpenJDK Runtime Environment (IcedTea6 1.7.5) (rhel-1.16.b17.el5-i386)
+OpenJDK Server VM (build 14.0-b16, mixed mode)
+B.搜索一下系统默认安装了哪些java包：
+[root@localhost local]# rpm -qa | grep java
+java-1.6.0-openjdk-1.6.0.0-1.16.b17.el5
+java-1.4.2-gcj-compat-1.4.2.0-40jpp.115
+tzdata-java-2010l-1.el5
+哎哟喂，还真有openSDK,好卸载它。
+[root@localhost ~]# rpm -e --nodeps java-1.6.0-openjdk-1.6.0.0-1.16.b17.el5
+[root@localhost ~]# rpm -e --nodeps java-1.4.2-gcj-compat-1.4.2.0-40jpp.115
+[root@localhost ~]# rpm -e --nodeps tzdata-java-2010l-1.el5
+C.开始安装sun的jdk(根据服务器配置选择)
+[root@localhost local]# rpm -ivh jdk-7u25-linux-i586.rpm 
+D.验证一下
+[root@localhost local]# java -version
+java version "1.7.0_25"
+Java(TM) SE Runtime Environment (build 1.7.0_25-b15)
+Java HotSpot(TM) Server VM (build 23.25-b01, mixed mode)
+E.配置环境变量
+vim /etc/profile
+向文件里面追加以下内容：
+JAVA_HOME=/usr/java/jdk1.7.0_25
+JRE_HOME=/usr/java/jdk1.7.0_25/jre
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+export JAVA_HOME JRE_HOME PATH CLASSPATH
+添加完过后，要使用生效
+[root@localhost local]# source /etc/profile
+
+(2)安装tomcat
+A.下载apache-tomcat-7.0.42.tar.gz
+B.安装，其实根本就不用安装，是打包好了的，下载下来直接使用即可。
+[root@localhost local]# cd /usr/local/
+[root@localhost local]# tar zxvf apache-tomcat-7.0.42.tar.gz 
+[root@localhost local]# rm -rf apache-tomcat-7.0.42.tar.gz 
+OK，再来改个名儿：
+[root@localhost local]# mv apache-tomcat-7.0.42/ tomcat
+C.启动起来试一火：
+[root@localhost local]# /usr/local/tomcat/bin/startup.sh 
+
+(3)配置tomcat
+A.防火墙首先要让tomcat过撒，不能让它拦截，要告诉防火墙tomcat是良民。
+[root@localhost local]# vim /etc/sysconfig/iptables
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+
+(4)验证一下tomcat是否正常运行，并且已被防火墙放行。
+打开http://210.51.7.37:8080/看一下是不是可以看到tomcat的欢迎页面
+
+6.安装FTP Server
+为了文件传输方便，需要安装一个ftp server用于文件传输
+(1)安装[root@localhost bin]# yum -y install vsftpd
+(2)配置,暂时不关心安全问题
+[root@localhost bin]# vim /etc/vsftpd/user_list ，屏蔽root
+[root@localhost bin]# vim /etc/vsftpd/ftpusers ，屏蔽root
+[root@localhost bin]# vim /etc/vsftpd/vsftpd.conf ，屏蔽掉anonymous_enable=YES
+(3)启动 service vsftpd start
+
+7.提交新的前台网站至apache目录。
+默认apache的网站根目录为/var/www/html
+即将网站放置于此目录即可。
+如果有多个网站并且对应不同的域名则需要设置/etc/config/http.conf
+#++ by Gray.Luo 20130603
+NameVirtualHost 114.113.157.210
+<VirtualHost 114.113.157.210>
+DocumentRoot "/var/www/html/cxtx"
+ServerName http://life.auto-mall.com.cn
+</VirtualHost>
+<VirtualHost 114.113.157.210>
+DocumentRoot "/var/www/html/cxtx"
+ServerName http://app.auto-mall.com.cn
+</VirtualHost>
+
+
