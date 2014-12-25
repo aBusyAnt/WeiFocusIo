@@ -71,12 +71,13 @@ tags: []
 目前PHP暂时根本不需要配置，我们只需要直接使用其默认的配置文件即可：
 
 	sudo cp /etc/php.ini.default /etc/php.ini
+	
 添加一个php测试页面，将上面的index.html修改一下：
 
 	mv ~/Sites/index.html ~/Sites/index.php
 	vim ~/Sites/index.php
 	输入：<?php phpinfo()?>
-	
+
 打开浏览器访问：	http://localhost/~username/
 正常显示 PHP 的相关信息就OK了。
 
