@@ -82,7 +82,8 @@ tags: []
 正常显示 PHP 的相关信息就OK了。
 
 ##特别说明一点：  
-	由于我们后面的服务端开发使用的是Laravel，而Laravel框架依赖Mcrypt库，所以还要安装这个库，如果上面安装PHP的时候已经安装了就可以忽略。
+由于我们后面的服务端开发使用的是Laravel，而Laravel框架依赖Mcrypt库，所以还要安装这个库，如果上面安装PHP的时候已经安装了就可以忽略。
+
 1、测试一下有没有安装：php -m  
 
 2、下载[libmcrypt库](http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz)与[php源码](http://cn2.php.net/distributions/php-5.5.12.tar.gz)  。  
