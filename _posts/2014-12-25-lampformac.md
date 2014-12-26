@@ -109,7 +109,8 @@ tags: []
 
 	在尾部添加：extension=mcrypt.so
 	修改扩展的路径：  
-	extension_dir = "/usr/local/lib/php/extensions/no-debug-non-zts-20121212"
+	extension_dir = "/usr/local/lib/php/extensions/no-debug-non-zts-20121212"  
+	
 如果一切OK，使用php -m 应该可以查看到mcrypt,或者在刚才的测试页面应该可以看到mcrypt被激活了。
 
 三、MySQL
