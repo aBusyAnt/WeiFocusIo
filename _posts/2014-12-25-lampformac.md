@@ -81,10 +81,32 @@ tags: []
 打开浏览器访问：	http://localhost/~username/
 正常显示 PHP 的相关信息就OK了。
 
+特别说明一点：由于我们后面的服务端开发使用的是Laravel，而Laravel框架依赖Mcrypt库，所以还要安装这个库，如果上面安装PHP的时候已经安装了就可以忽略。
+1、测试一下有没有安装：php -m  
+2、下载[libmcrypt库](http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz)与[php源码](http://cn2.php.net/distributions/php-5.5.12.tar.gz)  。  
+3、编译libmcrypt :    
+	./configure
+	make
+	sudo make install
+
+4、编译php及扩展:
+	cd ~/php-5.5.12/ext/mcrypt/
+	phpize
+	make
+	sudo make install  
+	安装完成过后会提示mcrypt.so安装在哪个目录如：
+	/usr/local/lib/php/extensions/no-debug-non-zts-20121212/mcrypt.so
+5、如果原来安装过了php，有可能环境配置中的php并不是当前编译的。
+	使用which php 可以看到当前使用的是哪个php
+6、修改php.ini
+	在尾部添加：extension=mcrypt.so
+	修改扩展的路径：  
+	extension_dir = "/usr/local/lib/php/extensions/no-debug-non-zts-20121212"
+如果一切OK，使用php -m 应该可以查看到mcrypt,或者在刚才的测试页面应该可以看到mcrypt被激活了。
+
 三、MySQL
 
 MySQL的配置太通用了，安装->配置用户名密码->设置相关用户的访问主机与权限，就这么简单就不浪费时间了。
-
 
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
