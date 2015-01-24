@@ -8,7 +8,7 @@ tags: [AutoLayout]
 {% include JB/setup %}
 在上一篇中我们一起讨论了Autolayout出生之前的iOS布局方式，并讲了以前的布局方式的缺陷，从而引入了AutoLayout,这篇文章我们就直接上正餐了。
 接到上一篇的示例，我们使用Autolayout来完成autoresizingMask无法完成的使命，我们先在File inspector中激活autolayout，我们在Size Inspector中再也看不到autoresizingMask了，取而代之，我们可以在视图下方看到4个操作按钮。
-
+<!--more-->
 <img src="{{ site.attachment }}/posts/2015-01-24-autolayout2_1.PNG" width="949" height="703"/>
 
 依次选中3个视图，然后在菜单Editor -> Pin 中以此为3个视图添加约束（Constraints）或者直接选中视图点击底部第二个按钮（指向它，稍后会提示Pin）在里面直接激活某个constraints,并点击Add constraints，在autolayout中我们将布局的名称改为约束，就是建立视图之间 以及 视图与父视图之间的约束关系，由这些约束关系确定各个view的位置与大小。
