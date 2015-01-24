@@ -61,7 +61,7 @@ view.backgroundColor = [UIColor lightGrayColor];
 <div style="width:950px;overflow-x:scroll">
   <div style="width:950px">
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" width="320" height="480"/>
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" width="480" height="320" />
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_2.PNG" width="480" height="320" />
   </div>
 </div>
 
