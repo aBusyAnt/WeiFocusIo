@@ -107,17 +107,15 @@ autoresizingMask在使用时，其值并不限于定义的值，可以组合，�
 {% highlight Objective-C %}
 view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 {% endhighlight %}
+
 这两个值相或的结果就可以保证view的长宽随分辨率和旋转自动调整长宽，从而使view距离其父视图上下左右的边距保持不变。
 在xib或者Storyboard(以后都叫SB,^_^)中布局时，切换至size insepector时可以看到Autoresizing，可以直接直接激活或者disable掉某一值。
 看起来像不像给View加了一个弹簧(Springs),然后与其父视图之间以margins进行标记(struts)，autoresizingMask其实就是我们后面讲autolayout时所要提到的Struts&Spring模式。
+
 我们一起来用autoresizingMask完成我们一个布局设置：
-<div style="width:1000px;overflow-x:scroll">
-  <div style="width:1000px">
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_4.PNG" width="400" height="400"/>
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_5.PNG" width="400" height="400" />
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_6.PNG" width="400" height="400"/>
-  </div>
-</div>
 保持红色view左上边距，保持橙色右上边距，保持蓝色view底部边距。
 我们得到的竖屏和横屏的效果如下：
 <div style="width:1000px;overflow-x:scroll">
@@ -126,6 +124,7 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexib
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_8.PNG" width="480" height="320"/>
   </div>
 </div>
+
 autoresizingMask非常聪明，已经非常尽力了，但是确实力不从心，因为super view只告诉它缩放子view以保持边距margin,但是并没有告诉它要缩放多少，view之间无法约束，就是说view之间没有padding,这就是autoresizingMask最大的缺点，它是无能为力了，只能通过屏幕改变时再重新计算视图，重新在viewWillLayoutSubviews/
 viewDidLayoutSubviews这种布件事件中人为干预。
 
