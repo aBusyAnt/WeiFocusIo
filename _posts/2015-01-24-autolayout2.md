@@ -15,17 +15,17 @@ tags: [AutoLayout]
 
 依次选中3个视图，然后在菜单Editor -> Pin 中以此为3个视图添加约束（Constraints）或者直接选中视图点击底部第二个按钮（指向它，稍后会提示Pin）在里面直接激活某个constraints,并点击Add constraints，在autolayout中我们将布局的名称改为约束，就是建立视图之间 以及 视图与父视图之间的约束关系，由这些约束关系确定各个view的位置与大小。
 
-1、 红色View添加约束Constraints：
-	Leading Space to Superview ，Trailing Space to View，Top Space to Superview ，Bottom Space to View 。
+1、 红色View添加约束Constraints：  
+ > * Leading Space to Superview ，Trailing Space to View，Top Space to Superview ，Bottom Space to View 。
 2、橙色View添加约束Constraints:	
-	Leading Space to View ，Trailing Space to Superview，Top Space to Superview ，Bottom Space to View 。
-3、蓝色View添加约束Constraints:
-	Leading Space to Superview ，Trailing Space to Superview，Top Space to View ，Bottom Space to Superview.
+ > * Leading Space to View ，Trailing Space to Superview，Top Space to Superview ，Bottom Space to View 。
+3、蓝色View添加约束Constraints:  
+ > * Leading Space to Superview ，Trailing Space to Superview，Top Space to View ，Bottom Space to Superview.
 
 即
-红色View添加约束为 保持前置距离 ，保持后置与橙色View的距离，保持顶部距离，保持底部与蓝色View的距离。
-橙色View添加约束为 保持前置与红色View的距离 ，保持后置距离，保持顶部距离，保持底部与蓝色View视图的距离。
-蓝色View添加约束为 保持前置距离 ，保持后置距离，保持顶部与红色View的距离，保持底部距离。
+ > * 红色View添加约束为 保持前置距离 ，保持后置与橙色View的距离，保持顶部距离，保持底部与蓝色View的距离。
+ > * 橙色View添加约束为 保持前置与红色View的距离 ，保持后置距离，保持顶部距离，保持底部与蓝色View视图的距离。
+ > * 蓝色View添加约束为 保持前置距离 ，保持后置距离，保持顶部与红色View的距离，保持底部距离。
 
 添加完这些预约我们会发现好多橙色线条，分别选中3个View时都会出现一个橙色的虚线框，这都是IB在提示我们，约束不够或者矛盾而无法确定view的大小，也有可能约束的值和当前布局的值并不一致而导致警告，比如红色view距离上边距现在是31，但是我在Top Space to Superview 中设置的是20，IB会非常聪明的发现这些，并给出警告。如果发现左侧的view旁边有了红色箭头，这表示view的位置无法确定，必须修改，否则view布局结果完全未知，严重时可能会导致crash。如果是黄色表示constrints的值和当前IB中的值不一致，可能是笔误。但是最好让每个view的旁边什么都没有。橙色虚线框表示根据constraints计算的结果可能该view会呈现的位置与大小。  
 
@@ -76,11 +76,13 @@ OK，这样，所有的警告都没有了，只剩下蓝色的线条。
 > <constraint firstItem="Oja-YK-2U3" firstAttribute="top" secondItem="HAY-ER-wAq" secondAttribute="bottom" constant="14" id="pb1-Ge-D4E"/>
 
 ****技巧:    
-一、使用IB提供的建议约束：  
+
+一、使用IB提供的建议约束：
+
 对于不是很复杂的页面，我们可以使用layout下面的第三个按钮中的Reset to suggested constraints,IB会自动添加视图间的约束，然后我们再确认是否有必要进行修正。
 比如我们用上面的例子来试一下，就得到IB自动创建constraints的结果：  
 
-<img src="{{ site.attachment }}/posts/2015-01-24-autolayout2_8.png" width="679" height="682"/>  
+<img src="{{ site.attachment }}/posts/2015-01-24-autolayout2_9.png" width="679" height="682"/>  
 
 IB还算蛮聪明的，它并没有为红色view与橙色view添加固定的高度，但是遗憾的是它还是给蓝色的view添加了距离父视图固定的距离，这与我们的想法并不一致，不过IB已经经历了，在众中选项中，它确实无法明确我们到底要哪一种，它就只能按自己的想法给提供给我们一种了，这让我想到了《疑犯追踪》S04-11，这一集真是太精彩了，机器在为Finch们寻找逃生方案时不断的模拟，而最终为其提供一个生存率相对相高的方案。我们再在些基础上稍加修改即可，使用建议约束一定要检查IB给的建议约束是否是我们想要的。
 
