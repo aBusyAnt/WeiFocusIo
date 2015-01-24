@@ -26,26 +26,26 @@ tags: ['AutoLayout']
 
 确定一个View的展现，需要一个原点和长宽，所以一开始的布局都是以此定律来写：  
 {% highlight Objective-C %}
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
-    view.backgroundColor = [UIColor lightGrayColor];
-    
-    UIView *subView1 = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
-    [view addSubview:subView1];
-    
-    [self.view addSubview:view];
+UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
+view.backgroundColor = [UIColor lightGrayColor];
+
+UIView *subView1 = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
+[view addSubview:subView1];
+
+[self.view addSubview:view];
 {% endhighlight %}
 但是我们希望view在高分辨率下能够变大，而低分辨率下变小，如何办？我们可能会这样：
 {% highlight Objective-C %}
-    CGFloat hMargin = 50;
-    CGFloat vMargin = 100;
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width-hMargin, self.view.bounds.size.height-vMargin)];
-    view.backgroundColor = [UIColor lightGrayColor];
-    
-    CGFloat subMargin  = 10;
-    UIView *subView1 = [[UIView alloc]initWithFrame:CGRectMake(subMargin, subMargin, view.bounds.size.width-subMargin, view.bounds.size.height-subMargin)];
-    [view addSubview:subView1];
-    
-    [self.view addSubview:view];
+CGFloat hMargin = 50;
+CGFloat vMargin = 100;
+UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width-hMargin, self.view.bounds.size.height-vMargin)];
+view.backgroundColor = [UIColor lightGrayColor];
+
+CGFloat subMargin  = 10;
+UIView *subView1 = [[UIView alloc]initWithFrame:CGRectMake(subMargin, subMargin, view.bounds.size.width-subMargin, view.bounds.size.height-subMargin)];
+[view addSubview:subView1];
+
+[self.view addSubview:view];
 {% endhighlight %}
 即将所有的view的frame都基于controller的root view的大小，而controller会根据分辨率自动确定其大小，所以我们添加在root view上的sub views都基于root view的大小进行相对布局，即一层一层的相对于父视图的大小，利用边界宽度，利用父视图的长宽来确定子视图的尺寸。
 当多个并列的视图要同时添加到一个父视图时，我们可能会根据设计计算出各个视图的比例，确定边界，然后在添加view时利用计算出的比例将父视图的可见窗瓜分，这就像一块蛋糕，我们先要确定有多少人就可以确定有多少份，然后需要确定每一份的占比(蛋糕当然不需要算占比，just a simile)。
