@@ -58,16 +58,25 @@ UIView *view = [[UIView alloc]initWithFrame:CGRectMake(10, 10, self.view.bounds.
 view.backgroundColor = [UIColor lightGrayColor];
 [self.view addSubview:view];
 {% endhighlight %}
+<div style="width:950px;overflow-x:scroll">
+  <div style="width:950px">
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="300" height="450"/>
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="450" height="300" />
+  </div>
+</div>
 
-<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_2.PNG" align="center" width="200" height="300">  
-<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" align="center" width="300" height="200">  
 
 运行,旋转，你会发现竖屏时，显示正常，但是横屏时你会发现宽度没变，距离右侧距离变大了, 此时有两种做法，要么在旋转事件中重新对视图进行布局调整，要么就使用autoresizingMask来解决，前者一想就知道工作量繁琐，容易出错，会花不小时间精力。我们肯定会选择后者。
 我们添加一句：
 {% highlight Objective-C %}
 view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 {% endhighlight %}
-<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_3.PNG" align="center" width="300" height="200">  
+<div style="width:950px;overflow-x:scroll">
+  <div style="width:950px">
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="300" height="450"/>
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_3.jpg" width="450" height="300" />
+  </div>
+</div>
 你会发现神奇的事情发生了，它横屏、竖屏时左右间距都对了，那什么是autoresizingMask呢？  
 顾明思意，就是自动调整视图相对于父视图的位置大小，我们来看一下autoresizingMask的定义
 {% highlight Objective-C %}
