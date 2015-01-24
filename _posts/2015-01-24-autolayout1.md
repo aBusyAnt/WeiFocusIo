@@ -118,7 +118,7 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexib
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_5.PNG" width="400" height="400" />
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_6.PNG" width="400" height="400"/>
 
-保持红色view左上边距，保持橙色右上边距，保持蓝色view底部边距。
+保持红色view左上边距，保持橙色右上边距，保持蓝色view底部与左右边距。
 我们得到的竖屏和横屏的效果如下：
 
 <div style="width:1000px;overflow-x:scroll">
@@ -128,8 +128,9 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexib
   </div>
 </div>
 
+我们看到红色和橙色还行，但是蓝色视图与上面的视图明显重叠了，这可不是我们想要的。
 autoresizingMask非常聪明，已经非常尽力了，但是确实力不从心，因为super view只告诉它缩放子view以保持边距margin,但是并没有告诉它要缩放多少，view之间无法约束，就是说view之间没有padding,这就是autoresizingMask最大的缺点，它是无能为力了，只能通过屏幕改变时再重新计算视图，重新在viewWillLayoutSubviews/
-viewDidLayoutSubviews这种布件事件中人为干预。
+viewDidLayoutSubviews这种布局事件中人为干预。
 
 autoresizingMask的用法基本就是这样子，就是系统可以帮助我们确定某一视图相对于其父视图如何调整，但是同一父视图下的子视图之间的相对关系如何确定呢？比如我们建立两个两个子视图，难道只能像上面所讲的那样来计算视图模块，然后算出比例进行分配吗？在autolayout出来之前，可能很多人都会这样认为，但iOS6出来过后，Apple及时的添加了Autolayout用来满足开发者的布局要求。
 
