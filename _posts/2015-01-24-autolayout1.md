@@ -60,8 +60,8 @@ view.backgroundColor = [UIColor lightGrayColor];
 {% endhighlight %}
 <div style="width:950px;overflow-x:scroll">
   <div style="width:950px">
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="300" height="450"/>
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="450" height="300" />
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" width="320" height="480"/>
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" width="480" height="320" />
   </div>
 </div>
 
@@ -73,8 +73,8 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 {% endhighlight %}
 <div style="width:950px;overflow-x:scroll">
   <div style="width:950px">
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.jpg" width="300" height="450"/>
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_3.jpg" width="450" height="300" />
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_1.PNG" width="320" height="480"/>
+  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_3.PNG" width="480" height="320" />
   </div>
 </div>
 你会发现神奇的事情发生了，它横屏、竖屏时左右间距都对了，那什么是autoresizingMask呢？  
