@@ -114,17 +114,17 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexib
 
 我们一起来用autoresizingMask完成我们一个布局设置：
 
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_4.PNG" width="400" height="400"/>
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_5.PNG" width="400" height="400" />
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_6.PNG" width="400" height="400"/>
+<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_4.PNG" width="400" height="400"/>
+<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_5.PNG" width="400" height="400" />
+<img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_6.PNG" width="400" height="400"/>
 
 保持红色view左上边距，保持橙色右上边距，保持蓝色view底部与左右边距。
 我们得到的竖屏和横屏的效果如下：
 
 <div style="width:1000px;overflow-x:scroll">
   <div style="width:1000px">
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_7.PNG" width="320" height="480"/>
-  <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_8.PNG" width="480" height="320"/>
+    <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_7.PNG" width="320" height="480"/>
+    <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_8.PNG" width="480" height="320"/>
   </div>
 </div>
 
