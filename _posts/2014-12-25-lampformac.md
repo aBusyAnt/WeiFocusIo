@@ -67,7 +67,7 @@ tags: []
 	sudo apachectl restart
 	打开浏览器，访问http://localhost/~username/,正常显示"hello ,Cash !"
 
-二、配置PHP
+二、配置PHP  
 目前PHP暂时根本不需要配置，我们只需要直接使用其默认的配置文件即可：
 
 	sudo cp /etc/php.ini.default /etc/php.ini
@@ -113,7 +113,7 @@ tags: []
 	
 如果一切OK，使用php -m 应该可以查看到mcrypt,或者在刚才的测试页面应该可以看到mcrypt被激活了。
 
-三、MySQL
+三、MySQL  
 
 MySQL的配置太通用了，安装->配置用户名密码->设置相关用户的访问主机与权限，就这么简单就不浪费时间了。
 
