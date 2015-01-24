@@ -113,11 +113,14 @@ view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexib
 看起来像不像给View加了一个弹簧(Springs),然后与其父视图之间以margins进行标记(struts)，autoresizingMask其实就是我们后面讲autolayout时所要提到的Struts&Spring模式。
 
 我们一起来用autoresizingMask完成我们一个布局设置：
+
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_4.PNG" width="400" height="400"/>
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_5.PNG" width="400" height="400" />
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_6.PNG" width="400" height="400"/>
+
 保持红色view左上边距，保持橙色右上边距，保持蓝色view底部边距。
 我们得到的竖屏和横屏的效果如下：
+
 <div style="width:1000px;overflow-x:scroll">
   <div style="width:1000px">
   <img src="{{ site.attachment }}/posts/2015-01-24-autolayout1_7.PNG" width="320" height="480"/>
