@@ -117,7 +117,7 @@ autoresizingMask的用法基本就是这样子，就是系统可以帮助我们�
 
 四、Size Class
 
-尺寸分类？光看名字可能还不能理解它的意思，其实size class是iOS8引入的概念，在xcode6引入，设备太多，如果按固有的布局方式来进行调整，工作量会越来越大，工作越来越繁琐，从而Apple简化了分辩率的概念，将尺寸抽象为Compact、Regular、Any(紧凑、正常、任意三种情况，在autolayout布局无法适应不同尺寸下的布局时，就需要单独为每种模式添加autolayout的约束。Autolayout讨论完过后，我们会一起来讨论Size Class。
+尺寸分类？光看名字可能还不能理解它的意思，其实size class是iOS8引入的概念，在xcode6引入，设备太多，如果按固有的布局方式来进行调整，工作量会越来越大，工作越来越繁琐，从而Apple简化了分辩率的概念，将尺寸抽象为Compact、Regular、Any(紧凑、正常、任意)三种情况，在autolayout布局无法适应不同尺寸下的布局时，就需要单独为每种模式添加autolayout的约束。Autolayout讨论完过后，我们会一起来讨论Size Class。
 
 
 
