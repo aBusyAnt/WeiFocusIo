@@ -18,9 +18,11 @@ tags: [AutoLayout]
 1、 红色View添加约束Constraints:  
 
 > * Leading Space to Superview ，Trailing Space to View，Top Space to Superview ，Bottom Space to View .  
+
 2、橙色View添加约束Constraints:    
 
  > * Leading Space to View ，Trailing Space to Superview，Top Space to Superview ，Bottom Space to View 。  
+ 
 3、蓝色View添加约束Constraints:    
 
  > * Leading Space to Superview ，Trailing Space to Superview，Top Space to View ，Bottom Space to Superview.  
