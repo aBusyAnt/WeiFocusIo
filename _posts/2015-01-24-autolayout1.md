@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AutoLayout深入浅出[一]"
+title: "AutoLayout深入浅出[前传]"
 description: ""
 category: "Object-C"
 tags: ['AutoLayout']
@@ -103,8 +103,22 @@ typedef NS_OPTIONS(NSUInteger, UIViewAutoresizing) {
 
 默认为UIViewAutoresizingNone,需要注意的是这个枚举定义的字面意思是调整的部分，比如UIViewAutoresizingFlexibleWidth调整的就是宽度，而不是说宽度不变化，这里描述的是变的部分，就跟汽车里面的ESP一样，有一个关的开关，按下去就表示关，所以需要注意。(提醒车友千万千万保持ESP处于开的状态，现代汽车就是这些电子器件保证了驾车的便捷与安全，它可以救你无数次)。  
 autoresizingMask在使用时，其值并不限于定义的值，可以组合，如下保证上边距和左边距不变，view将自动调整与下边距与右边距。
+上面的示例中我们使用了UIViewAutoresizingFlexibleWidth，其实我们也可以组合使用如：
+{% highlight Objective-C %}
+view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+{% endhighlight %}
+这两个值相或的结果就可以保证view的长宽随分辨率和旋转自动调整长宽，从而使view距离其父视图上下左右的边距保持不变。
+在xib或者Storyboard(以后都叫SB,^_^)中布局时，切换至size insepector时可以看到Autoresizing，可以直接直接激活或者disable掉某一值。
+autoresizingMask的用法基本就是这样子，就是系统可以帮助我们确定某一视图相对于其父视图如何调整，但是同一父视图下的子视图之间的相对关系如何确定呢？难道只能像上面所讲的那样来计算视图模块，然后算出比例进行分配吗？在autolayout出来之前，可能很多人都会这样认为，但iOS6出来过后，Apple及时的添加了Autolayout用来满足开发者的布局要求。
 
-[topView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin];
+三、AutoLayout
+
+听这名字，高大山，自动布局，是不是真的如其名，我们逐步揭晓，我们接下来会先讨论在IB中使用autolayout，然后再讲如何在代码中使用autolayout，再然后我们会把autolayout使用过程中几种比较复杂的情况讨论下如何处理从而完成对autolayout的系统学习。
+
+四、Size Class
+
+尺寸分类？光看名字可能还不能理解它的意思，其实size class是iOS8引入的概念，在xcode6引入，设备太多，如果按固有的布局方式来进行调整，工作量会越来越大，工作越来越繁琐，从而Apple简化了分辩率的概念，将尺寸抽象为Compact、Regular、Any(紧凑、正常、任意三种情况，在autolayout布局无法适应不同尺寸下的布局时，就需要单独为每种模式添加autolayout的约束。Autolayout讨论完过后，我们会一起来讨论Size Class。
+
 
 
 
