@@ -94,8 +94,8 @@ IB还算蛮聪明的，它并没有为红色view与橙色view添加固定的高�
 
 
 参考：  
-本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！   
-> * http://www.raywenderlich.com/50317/beginning-auto-layout-tutorial-in-ios-7-part-1
-> * https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html
+本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！    
+ > * http://www.raywenderlich.com/50317/beginning-auto-layout-tutorial-in-ios-7-part-1
+ > * https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html
 
 
