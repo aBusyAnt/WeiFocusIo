@@ -3,7 +3,7 @@ layout: post
 title: "闭包中的内存泄漏陷阱"
 description: ""
 category: "Swift" 
-tags: []
+tags: ['swift']
 ---
 {% include JB/setup %}
 

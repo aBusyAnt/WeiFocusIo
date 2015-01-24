@@ -3,7 +3,7 @@ layout: post
 title: "配置Apache+PHP+MySQL"
 description: ""
 category: "PHP"
-tags: []
+tags: ['PHP']
 ---
 {% include JB/setup %}
 

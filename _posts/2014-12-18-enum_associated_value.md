@@ -3,7 +3,7 @@ layout: post
 title: "枚举相关值"
 description: ""
 category: "Swift" 
-tags: []
+tags: ['swift']
 ---
 {% include JB/setup %}
 

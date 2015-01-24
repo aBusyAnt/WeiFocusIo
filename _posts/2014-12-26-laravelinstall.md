@@ -3,7 +3,7 @@ layout: post
 title: "Laravel Sentry扩展"
 description: ""
 category: "Laravel"
-tags: []
+tags: ['Laravel']
 ---
 {% include JB/setup %}
 

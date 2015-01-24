@@ -3,7 +3,7 @@ layout: post
 title: "Sequence"
 description: ""
 category: "Swift"
-tags: []
+tags: ['swift']
 ---
 {% include JB/setup %}
 
