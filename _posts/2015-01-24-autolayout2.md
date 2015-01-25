@@ -22,7 +22,7 @@ tags: [AutoLayout]
 2、橙色View添加约束Constraints:    
 
  > * Leading Space to View ，Trailing Space to Superview，Top Space to Superview ，Bottom Space to View 。  
- 
+
 3、蓝色View添加约束Constraints:    
 
  > * Leading Space to Superview ，Trailing Space to Superview，Top Space to View ，Bottom Space to Superview.  
@@ -33,7 +33,7 @@ tags: [AutoLayout]
  > * 橙色View添加约束为 保持前置与红色View的距离 ，保持后置距离，保持顶部距离，保持底部与蓝色View视图的距离。   
  > * 蓝色View添加约束为 保持前置距离 ，保持后置距离，保持顶部与红色View的距离，保持底部距离。    
 
-添加完这些预约我们会发现好多橙色线条，分别选中3个View时都会出现一个橙色的虚线框，这都是IB在提示我们，约束不够或者矛盾而无法确定view的大小，也有可能约束的值和当前布局的值并不一致而导致警告，比如红色view距离上边距现在是31，但是我在Top Space to Superview 中设置的是20，IB会非常聪明的发现这些，并给出警告。如果发现左侧的view旁边有了红色箭头，这表示view的位置无法确定，必须修改，否则view布局结果完全未知，严重时可能会导致crash。如果是黄色表示constrints的值和当前IB中的值不一致，可能是笔误。但是最好让每个view的旁边什么都没有。橙色虚线框表示根据constraints计算的结果可能该view会呈现的位置与大小。  
+添加完这些预约我们会发现好多橙色线条，分别选中3个View时都会出现一个橙色的虚线框，这都是IB在提示我们，约束不够或者矛盾而无法确定view的大小，也有可能约束的值和当前布局的值并不一致而导致警告，比如红色view距离上边距现在是31，但是我在Top Space to Superview 中设置的是20，IB会非常聪明的发现这些，并给出警告。如果发现左侧的view旁边有了红色箭头，这表示view的位置无法确定，必须修改，否则view布局结果完全未知，严重时可能会导致crash。如果是黄色表示constraints的值和当前IB中的值不一致，可能是笔误。但是最好让每个view的旁边什么都没有。橙色虚线框表示根据constraints计算的结果可能该view会呈现的位置与大小。  
 
 <img src="{{ site.attachment }}/posts/2015-01-24-autolayout2_2.PNG" width="957" height="688"/>  
 
