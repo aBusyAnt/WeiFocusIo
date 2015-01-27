@@ -8,7 +8,9 @@ tags: ['autolayout']
 {% include JB/setup %}
 
 AutoLayout 与 UIScrollView的相遇是一个不可避免的场景,UITableView、UIWebView这些都是继承于UIScrollView的，而我们要讨论的也主要是其contentSize问题，所以就直接讲UIScrollView就OK了。
+
 <!--more-->
+
 ![image]({{ site.attachment }}/posts/2015-01-27-autolayout3_1.png)
 
 如上图，我们将view分为3个部分，上面一部分主要用于展示海报或者一些封面图片，中间部分用来展示一些基本的信息，比如商品页面的价格，销量，分类等比较重要的信息，下面用于展示一些额外的信息，比如推荐给用户的一些其它商品或者门店等信息。
