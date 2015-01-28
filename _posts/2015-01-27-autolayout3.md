@@ -7,7 +7,7 @@ tags: ['autolayout']
 ---
 {% include JB/setup %}
 
-AutoLayout 与 UIScrollView的相遇是一个不可避免的场景,UITableView、UIWebView这些都是继承于UIScrollView的，而我们要讨论的也主要是其contentSize问题，所以就直接讲UIScrollView就OK了。
+AutoLayout 与 UIScrollView的相遇是一个不可避免的场景,像UITableView、UIWebView这些都是继承于UIScrollView的，关于它们的autolayout布局大体一致，但还是会有略微不同，而我们这篇讨论的主要是其contentSize问题，所以就直接讲UIScrollView就OK了。
 
 <!--more-->
 
@@ -28,7 +28,7 @@ AutoLayout 与 UIScrollView的相遇是一个不可避免的场景,UITableView�
 ![image]({{ site.attachment }}/posts/2015-01-27-autolayout3_2.png)
 
 My God ! 好多问题呀 @_@  
-不要被问题给吓倒了，我们一坏了来看一下问题。
+不要被问题给吓倒了，我们一起来看一下问题。
 问题提示的是:  
 
 >* Scroll View ,Need constraints for height   
@@ -40,10 +40,10 @@ My God ! 好多问题呀 @_@
 
 所以IB要求UIScrollview(当然包括继承于它的UITableview、UIWebview这些控件)的contentSize必须在布局时能够确定。
 
-由于Scrollview的contentSize由其subviews确定，其subviews的布局依赖于其父视图Scrollview的边界。这个矛盾，要不解决前者问题，要不解决后者，即要么不让UIScrollView的contentSize由其subviews确定，要么就不让ScrollView的subviews不依赖其contentSize（即Scrollview的边界）。很显然，我们只能选择后者，因为前者你无法改变，其实从宏观上来看，改变了一个就相当于改变了两个，其实二者并没有什么特别区别，都是同一个问题导致的。
+由于Scrollview的contentSize由其subviews确定，其subviews的布局依赖于其父视图Scrollview的边界。这个矛盾，要不解决前者问题，要不解决后者，即要么不让UIScrollView的contentSize由其subviews确定，要么就让ScrollView的subviews不依赖其contentSize（即Scrollview的边界）。很显然，我们只能选择后者，因为前者你无法改变，其实从宏观上来看，改变了一个就相当于改变了两个，其实二者并没有什么特别区别，都是同一个问题导致的。
 
 既然我们想好了策略，就来试一下，如何才能让Scrollview的subviews不依赖于其边界呢？
-我们首先不考虑subviews的复杂布局情况，我们先把subviews嵌入到一个我们自己添加的ContainerViwe中，从而把我们的布局任务简化成Scrollview与ContainerView二者的约束关系，所有之前的subviews我们都放在ContainerView中，则subviews的约束就会仅仅依赖于ContainerView了，这些subviews不再与scrollview有直接关系。
+我们首先不考虑subviews的复杂布局情况，我们先把subviews嵌入到一个我们自己添加的ContainerView中，从而把我们的布局任务简化成Scrollview与ContainerView二者的约束关系，所有之前的subviews我们都放在ContainerView中，则subviews的约束就会仅仅依赖于ContainerView了，这些subviews不再与scrollview有直接关系。
 
 我们虽然简化了布局任务，但是还是无法绕过Scrollview的ContentSize的边界确定问题，我们前面已经知道了Scrollview的子视图不能依赖于ScrollView的边界，那我们就让其子视图不依赖于其边界即可。
 国外有一个网友在遇到上面的问题的时候就咨询了Apple的工程师，结果他们画了40分钟才给出了解决方案，这说明Scrollview在autolayout中的使用真的不是那么简单。Apple的工程师给出的解决方案就是让我们的ContainerView建立一个与UIScrollview的父视图即我们的main view建立一个Equal Width,Equal Height约束，这样子ContainerView的宽高就不再依赖于ScrollView的边界了，但是ContainerView还是Scrollview的子视图，Scrollview的边界还是没有确定，我们还要为ContainerView添加与ScrollView的边界约束，用以帮忙ScrollView确定边界。
