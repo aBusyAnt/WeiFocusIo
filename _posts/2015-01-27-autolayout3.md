@@ -2,8 +2,8 @@
 layout: post
 title: "AutoLayout深入浅出三[相遇Scrollview]"
 description: ""
-category: 'autolayout'
-tags: ['autolayout']
+category: 'AutoLayout'
+tags: ['AutoLayout']
 ---
 {% include JB/setup %}
 
