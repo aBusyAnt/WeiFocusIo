@@ -98,7 +98,7 @@ IB还算蛮聪明的，它并没有为红色view与橙色view添加固定的高�
 
 四、底部的4个操作按钮在菜单Editor中都可以找到，依次用于对齐、约束、IB建议。
 
-五、在拖拽视图时，尽量使用每个view都至少有两个蓝色的参考线，视图之间按[HIG(Human Interface Guidelines)](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html)的标准保持8px以上间距。
+五、在拖拽视图时，尽量使用每个view都至少有两个蓝色的参考线，视图之间按[HIG(Human Interface Guidelines](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html)的标准保持8px以上间距。
 
 
 参考：  
