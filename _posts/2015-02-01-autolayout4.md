@@ -9,7 +9,10 @@ tags: ['AutoLayout']
 
 上一篇中我们已经深度使用了Autolayout，UIScrollView是一个比较复杂的控件了，我用了一个较为复杂也比较觉见的布局示例将Autolayout在Scrollview下的应用讨论了一遍，希望有帮助到你更好的理解Autolayout，或者代码的部分内容可以给你一些启示。
 而我们现在一起来看一下UIWebView在UITableView中应用会遇到什么问题，以及如何来解。
+
 <!--more-->
+
+
 其实本文与autolayout没有多大关系，iOS最初的版本就有了本文要讨论的内容，只是都谈到了布局，就在这里加入一篇讨论一下。
 
 由于iOS SDK只给我们提供了一个UIWebView用来渲染展示web内容，它是一个五脏俱全小型Safari,它的笨重是可想而知的，需要UIWebKit框架。
@@ -33,11 +36,13 @@ for(id subview in cell.contentView.subviews){
 
 可能你会在UIWebView的加载完成的Delegate webViewDidFinishLoad 中重新刷新UITableView,但是你很快就会发现 死循环了。
 其实思考方向并没有错，我们一般的流程:  
+
 > * 请求数据 -> 加载UITableView ->加载UIWebView ->重新计算并调整UIWebView及其行高。
+
 流程是这样，应该没有错，但是如何在webview加载完成过后重新计算webview高度，调整tableview行高呢？
 
-####方式一:  
-添加一个变量webviewHeight，给一个初始值，当webview加载完成过后，再更新webviewHeight的值，然后判断webviewHeight如果等于初始值就刷新这一行。
+我们可以添加一个变量webviewHeight，给一个初始值，当webview加载完成过后，再更新webviewHeight的值，然后判断webviewHeight如果等于初始值就刷新这一行。
+
 {% highlight Objective-C %}
 
 //CustomCell
