@@ -12,9 +12,6 @@ tags: ['AutoLayout']
 
 <!--more-->
 
-
-其实本文与autolayout没有多大关系，iOS最初的版本就有了本文要讨论的内容，只是都谈到了布局，就在这里加入一篇讨论一下。
-
 由于iOS SDK只给我们提供了一个UIWebView用来渲染展示web内容，它是一个五脏俱全小型Safari,它的笨重是可想而知的，需要UIWebKit框架。
 一般开发人员都会尽力避免跟UIWebView纠缠，因为它是一个内存消耗大户，由于加载的网页内容可能会涉及到大量js,css,图片，其中有些图片的尺寸可真不是盖的，会让APP的内存消耗陡增，进而让系统被迫杀死你心爱的APP。
 
@@ -90,24 +87,32 @@ cell.webViewLoadFinished = ^(CGFloat height){
 
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	//这样行吗？我就不给答案了，你可以试一下。
+	//这样行吗？
 	if(_webviewIsLoading){
 		return YES;
 	}
 
-	//这样就对吗？
-#define kFirstRequestUrlString @"http://news.baidu.com"
-
+	//这样行吗？
+	#define kFirstRequestUrlString @"http://news.baidu.com"\
     NSString *url = request.URL.absoluteString;
     if(![url isEqualToString:kFirstRequestUrlString]){
     	return YES;
     }
-
+	//这样是否OK呢？	
+	
     return NO;
 }
 
 {% endhighlight %}
 
+本文主要是给大家分析UIWebView与UITableView遇到一起过后会出现的问题，弄了一些小聪明来糊弄UITableView，我们知道UITableViewCell的高度是在画每一行之前就确定了的，就是说heightForRowAtIndexPath 是 在 cellForRowAtIndexPath 之前执行的，如果能够在每一行cellForRowAtIndexPath之前就确定height就成了问题的关键。
+
+上面讲的这些内容其实与autolayout没有多大关系，iOS最初的版本就有了以上要讨论的内容。
+
+到目前为止，我们还没有给出UITableView的高度的动态计算的一个比较全面、通用的方法，而这种需求又是非常常见的，那到底有没有什么方法可以一劳永逸的解决掉UITableView的高度问题呢？在技术上，特别是程序实现上，其实永远都是有答案的，所以一些初学者遇到一些常见问题过后，就会立即陷入开发的泥潭，要么绕圈子绕过去，要么就在泥潭面前束手无策，作为一个程序员，最大的能力不是代码写的有多好，而是其学习能力，因为技术永远是不可能学得完的，你总会有未知的东西，重点在于你有没有学习的方法去掌握需要掌握的东西，有没有学习的能力去把未知变成已知。
+
+
+在下一篇中，我们将专注于UITableView的高度如何进行动态计算，我写这些文章并不是要告诉你这个问题的答案是什么，而是告诉你，我们开发过程中如何思考的，遇到问题过后，如何解决的，也就是从实践中学习，掌握需要掌握的必要的原理与思维方式。
 
 
 
