@@ -26,13 +26,12 @@ tags: ['AutoLayout']
 
 ![image]({{ site.attachment }}/posts/2015-02-01-autolayout5_2.png)
 
-我们知道在Autolayout中，我们的UILabel,UIButton等控件都有了内建大小（intrinsic content size），就是说控件的大小会根据内容进行自动调整，可以这些控件的大小和ScrollView的bounds和contentSize进行对比，意思有点类似，只不过UILabel,UIButton这些控件并不像Scrollview一样可以在bounds不等于contentSize的情况下进行滚动查看内容。
-在这里为了使用UILabel的内建大小，我们要保持这compression resistance 和 hugging constraints 的垂直方向优先级没有被更高的优先级所覆盖，比如更改了UILabel内建大小的优先级(priority),并设置了UILabel的高度约束的优先级高于内建大小的优先级，那内建大小自然就不起作用了，就会以高优先级为准.
+我们知道在Autolayout中，我们的UILabel,UIButton等控件都有了内建大小（intrinsic content size），就是说控件的大小会根据内容进行自动调整，可以将这些控件的大小和ScrollView的bounds和contentSize进行对比，意思有点类似，只不过UILabel,UIButton这些控件并不像Scrollview一样可以在bounds不等于contentSize的情况下进行滚动查看内容。
+在这里为了使用UILabel的内建大小，我们要保持compression resistance 和 hugging constraints 的垂直方向优先级没有被更高的优先级所覆盖，比如更改了UILabel内建大小的优先级(priority),并设置了UILabel的高度约束的优先级高于内建大小的优先级，那内建大小自然就不起作用了，就会以高优先级为准.
 
 > * 下面是官方关于intrinsic content size的说明：
 	Custom views typically have content that they display of which the layout system is unaware. Overriding this method allows a custom view to communicate to the layout system what size it would like to be based on its content. This intrinsic size must be independent of the content frame, because there’s no way to dynamically communicate a changed width to the layout system based on a changed height, for example.
-
-	[Editing Auto Layout Constraints](https://developer.apple.com/library/ios/recipes/xcode_help-IB_auto_layout/chapters/EditingConstraintAttributesintheAttributesInspector.html)
+[Editing Auto Layout Constraints](https://developer.apple.com/library/ios/recipes/xcode_help-IB_auto_layout/chapters/EditingConstraintAttributesintheAttributesInspector.html)
 
 一方面我们确保了AppointmentedInfoCell中的控件，目前全是UILabel，其内建大小垂直方向优先级为最高的1000。
 光这个还不够，我们还要确保内建大小的边缘跟随内建大小一起变化，从而保证我们的内建大小可以起作用，说白了，就是要求contentView中的子控件建立与superView的约束，我们先建立第一个UILabel（姓名、电话）与superview top 的间距约束，然后依次往下建立控件之间推荐间距的约束，左边同列控件建立左部对齐约束，右边同行内容的建立顶部对齐约束，垂直方向的间距约束，最底部的"预约结果Label"建立与superview bottom的间距约束。
@@ -134,7 +133,7 @@ static AppointmentedInfoCell *baseCell;
 static dispatch_once_t onceToken;
 
 dispatch_once(&onceToken, ^{
-	AppointmentedInfoCell = [[AppointmentedInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyTableViewCellIdentifier];
+	baseCell = [[AppointmentedInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyTableViewCellIdentifier];
 });
 {% endhighlight %}
 
