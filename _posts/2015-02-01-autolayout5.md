@@ -156,3 +156,4 @@ OK,到这里，我们基本上就掌握了AutoLayout的UITableViewCell的动态�
 > * http://www.ifun.cc/blog/2014/02/21/dong-tai-ji-suan-uitableviewcellgao-du-xiang-jie/
 > * http://blog.amyworrall.com/post/66085151655/using-auto-layout-to-calculate-table-cell-height
 > * http://www.macspotsblog.com/dynamic-uitableview-cell-heights-programmatically/
+> * http://www.cnblogs.com/gatsbywang/p/4216706.html
