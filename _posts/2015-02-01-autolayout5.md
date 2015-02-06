@@ -144,17 +144,13 @@ OK,到这里，我们基本上就掌握了AutoLayout的UITableViewCell的动态�
 
 > * http://blog.jldagon.me/blog/2013/12/07/auto-layout-and-uitableview-cells/
 > * [对应demo](https://github.com/jilouc/TableViewAutoLayout)
-
 > * http://useyourloaf.com/blog/2014/02/14/table-view-cells-with-varying-row-heights.html
 > * [对应demo](https://github.com/kharrison/CodeExamples/tree/master/Huckleberry)
-
 > * http://www.raizlabs.com/dev/2014/02/leveraging-auto-layout-for-dynamic-cell-heights/
 > * [对应demo](https://github.com/Raizlabs/RZCellSizeManager/tree/master/RZCellSizeManagerDemo)
-
 > * http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights
 > * [中文翻译版](http://codingobjc.com/blog/2014/10/15/shi-yong-autolayoutshi-xian-uitableviewde-celldong-tai-bu-ju-he-ke-bian-xing-gao/)
 > * [PureLayout](https://github.com/smileyborg/PureLayout)
-
 > * http://www.raywenderlich.com/73602/dynamic-table-view-cell-height-auto-layout
 > * https://github.com/Alex311/TableCellWithAutoLayout
 > * http://www.ifun.cc/blog/2014/02/21/dong-tai-ji-suan-uitableviewcellgao-du-xiang-jie/
