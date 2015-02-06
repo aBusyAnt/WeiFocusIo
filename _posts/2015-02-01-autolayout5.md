@@ -7,7 +7,7 @@ tags: ['AutoLayout']
 ---
 {% include JB/setup %}
 
-我们经常会遇到UITableViewCell的高度要跟随内容而调整，在未引入AutoLayout之前，我们使用以下方法计算Label高度，然后heightForRowAtIndexPath中返回计算的高度，这做做法，真的很土很局限很不好，如果UILabel使用了CoreText或者UIKit进行了富文本不同字体的排版，它更是没办法，我还得分段来计算，总之各种麻烦。
+我们经常会遇到UITableViewCell的高度要跟随内容而调整，在未引入AutoLayout之前，我们使用以下方法计算Label高度，然后heightForRowAtIndexPath中返回计算的高度，这种做法，真的很土很局限很不好，如果UILabel使用了CoreText或者UIKit进行了富文本不同字体的排版，它更是没办法，我还得分段来计算，总之各种麻烦。
 <!--more-->
 {% highlight Objective-C %}
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode NS_DEPRECATED_IOS(2_0, 7_0, "Use -boundingRectWithSize:options:attributes:context:"); // NSTextAlignment is not needed to determine size
