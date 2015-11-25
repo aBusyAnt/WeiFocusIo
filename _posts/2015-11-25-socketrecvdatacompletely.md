@@ -71,9 +71,9 @@ do{
 					ptrheader = ptrheader + ret;
 					ret = read(fd,ptrheader,sizeof(RECV_BUFF));
 					if(ret > 0){
-						if( (strstr(ptrheader,OK) != NULL) || (i > 1000) ){
-							breakflag = 1;
-						}
+					 if( (strstr(ptrheader,OK) != NULL) || (i > 1000) ){
+					   breakflag = 1;
+					 }
 					}
 				}while(!breakflag);				
 			}
