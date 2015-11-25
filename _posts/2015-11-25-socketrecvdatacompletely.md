@@ -70,7 +70,8 @@ do{
 				do{
 					ptrheader = ptrheader + ret;
 					ret = read(fd,ptrheader,sizeof(RECV_BUFF));
-					if(ret > 0){										if( (strstr(ptrheader,OK) != NULL) || (i > 1000) ){
+					if(ret > 0){
+						if( (strstr(ptrheader,OK) != NULL) || (i > 1000) ){
 							breakflag = 1;
 						}
 					}
