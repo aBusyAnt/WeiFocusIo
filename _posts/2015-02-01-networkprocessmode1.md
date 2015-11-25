@@ -32,7 +32,14 @@ tags: ['Network Process']
 * 第三种情况在APP中很少见，就是涉及的比较底层了，比如修改mac地址，修改mac工作模式，带宽等很多底层的参数，大都的目地是为了数据包的抓取。    
 
 一、TCP/UDP
-由于ObjectiveC兼容C，所以我们当然可以使用C写TCP/UDP，这点并不是我们这篇的重点，我们还是来算cocoa sdk的做法吧。
+在iOS中进行TCP/UDP开发一般使用以下3种方式：
+    
+* BSD Socket  
+* CFNetwork
+* 第三方封装库，比如最著名的AsyncSocket。
+
+ 
+
 
 
 
