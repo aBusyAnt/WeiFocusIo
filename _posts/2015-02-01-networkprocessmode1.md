@@ -40,7 +40,9 @@ tags: ['Network Process']
 > * [iOS网络编程[完整地接受数据]](http://grayluo.github.io/WeiFocusIo/network%20process/2015/11/25/socketrecvdatacompletely)
 
 * CFNetwork,apple的工程师的C封装，官方还提供了详细的编程指南：
+
 >  [CFNetwork Programming Guide](https://developer.apple.com/library/mac/documentation/Networking/Conceptual/CFNetwork/CFStreamTasks/CFStreamTasks.html#//apple_ref/doc/uid/TP30001132-CH6-SW1)
+
 * 第三方封装库，比如最著名的AsyncSocket。
 
  
