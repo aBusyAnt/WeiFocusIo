@@ -234,7 +234,7 @@ NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
-    NSLog(@"### handler 1");
+    NSLog(@"【1】DidReceiveResponse handle ");
     
     completionHandler(NSURLSessionResponseAllow);
 }
@@ -243,17 +243,17 @@ didReceiveResponse:(NSURLResponse *)response
     didReceiveData:(NSData *)data
 {
     NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"Received String %@",str);
+    NSLog(@"DidReceiveData: %@",str);
 }
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error
 {
     if(error == nil)
     {
-        NSLog(@"Download is Succesfull");
-    }
-    else
+        NSLog(@"no error");
+    }else{
         NSLog(@"Error %@",[error userInfo]);
+    }
 }
 {% endhighlight %}  
 
