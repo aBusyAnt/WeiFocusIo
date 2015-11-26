@@ -250,12 +250,73 @@ didCompleteWithError:(NSError *)error
 {
     if(error == nil)
     {
-        NSLog(@"no error");
+        NSLog(@"No error");
     }else{
         NSLog(@"Error %@",[error userInfo]);
     }
 }
 {% endhighlight %}  
+
+3.POST时from参数设置:  
+
+{% highlight Objective-C %}
+NSString * params =@"param1=value1&param2=value2&param3=value3";
+[urlRequest setHTTPMethod:@"POST"];
+[urlRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+{% endhighlight %}  
+
+4.下载 
+
+{% highlight Objective-C %}
+
+NSURL *url = [NSURL URLWithString:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg"];
+NSURLSessionConfiguration *sessionConfig= [NSURLSessionConfiguration defaultSessionConfiguration];
+NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+/*block方式
+NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url completionHandler:^(NSURL *location,NSURLResponse *response,NSError *error){
+    if(error == nil){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *DocumentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *documentDstFile = [DocumentDir stringByAppendingString:@"rs.jpg"];
+        NSLog(@"location:%@",location);
+        if ([fileManager moveItemAtPath:location toPath:documentDstFile error:&error]) {
+            NSLog(@"file saved to %@ ",documentDstFile);
+        }else{
+            NSLog(@"move file failed:%@",[error userInfo]);
+        }
+        
+        _img.image = [UIImage imageWithContentsOfFile:documentDstFile];
+    }
+}];
+ */
+//delegate方式
+NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:url];
+[downloadTask resume];
+
+
+#pragma mark - NSURLSessionDownloadDelegate
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
+    NSLog(@"Received: %lld bytes (Downloaded: %lld bytes)  Expected: %lld bytes.\n",bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
+}
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(NSURL *)location{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *DocumentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentDstFile = [DocumentDir stringByAppendingString:@"rs.jpg"];
+    NSLog(@"location:%@",location);
+    NSError *error = nil;
+    if ([fileManager moveItemAtPath:location toPath:documentDstFile error:&error]) {
+        NSLog(@"file saved to %@ ",documentDstFile);
+    }else{
+        NSLog(@"move file failed:%@",[error userInfo]);
+    }
+    
+    _img.image = [UIImage imageWithContentsOfFile:documentDstFile];
+
+}
+{% endhighlight %}  
+
 
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！   
