@@ -51,17 +51,17 @@ WWDC2013中apple推出了NSURLSession，是对原来的NSURLConnection的重构�
 1. 工作模式：  
 
 
-* singleton shared session：   
-> 这种模式下不需要session configuration，是一个全局的基本讲求，使用全局的session,cookie,cache.    
+* singleton shared session:    
+ > 这种模式下不需要session configuration，是一个全局的基本讲求，使用全局的session,cookie,cache.    
 
 * Default sessions:  
-> 这种模式与shared session模式很类似，只是可以设置其session configuration，这种默认的方式使用磁盘存储缓存数据。  
+ > 这种模式与shared session模式很类似，只是可以设置其session configuration，这种默认的方式使用磁盘存储缓存数据。  
 
-* Ephemeral sessions:  
-> 临时session配置，这种方式与default session配置的不同是，这种临时模式下缓存数据是存储在内存中的，程序退出后自然就会销毁。  
+* Ephemeral sessions:    
+ > 临时session配置，这种方式与default session配置的不同是，这种临时模式下缓存数据是存储在内存中的，程序退出后自然就会销毁。  
 
-* Background sessions:  
-> 后台session配置，这种方式与default session模式一样，只是会在后台开一个线程处理网络请求，所以这种方式一般用于文件的下载上传等。  
+* Background sessions:   
+ > 后台session配置，这种方式与default session模式一样，只是会在后台开一个线程处理网络请求，所以这种方式一般用于文件的下载上传等。  
 
 Session实例方式：
 
