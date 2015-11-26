@@ -49,6 +49,8 @@ tags: ['Network Process']
 WWDC2013中apple推出了NSURLSession，是对原来的NSURLConnection的重构，iOS9后已经完全废弃了NSURLConnection，而采用NSURLSession。  
 
 1. 工作模式：  
+
+
 * singleton shared session：  
 > 这种模式下不需要session configuration，是一个全局的基本讲求，使用全局的session,cookie,cache.  
 
