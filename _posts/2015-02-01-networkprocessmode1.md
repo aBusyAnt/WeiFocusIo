@@ -63,34 +63,46 @@ WWDC2013中apple推出了NSURLSession，是对原来的NSURLConnection的重构�
 * Background sessions:   
  > 后台session配置，这种方式与default session模式一样，只是会在后台开一个线程处理网络请求，所以这种方式一般用于文件的下载上传等。  
 
-Session实例方式：
+NSURLSession创建实例方式：
 
 {% highlight Objective-C %}
-/*
- * The shared session uses the currently set global NSURLCache,
- * NSHTTPCookieStorage and NSURLCredentialStorage objects.
- */
+
 + (NSURLSession *)sharedSession;
 
-/*
- * Customization of NSURLSession occurs during creation of a new session.
- * If you only need to use the convenience routines with custom
- * configuration options it is not necessary to specify a delegate.
- * If you do specify a delegate, the delegate will be retained until after
- * the delegate has been sent the URLSession:didBecomeInvalidWithError: message.
- */
+//由系统创建OperationQueue
 + (NSURLSession *)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration;
+
+//可以设定delegate，且可以设定delegate回调所在的OperationQueue,
 + (NSURLSession *)sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue;
+
 {% endhighlight %}  
 
 > PS:其中第3种方式可以设置会话委托和所处的队列。
+
+需要重点说明一下就是BackgroundSession的处理：  
+
+*  当程序切换至后台过后，在BackgroundSession中的Task还会继续下载，Session将只能与ApplicationDelegate 和 Session中的Delegate交互。只有在后台时才能与ApplicationDelegate交互。
+
+NSURLSessionDelegate的定义：
+
+* -(void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(nullable NSError *)error;
+
+//当实现了该delegate后，如果链接需要认证时，会回调此方法用于提供认证证书。
+* - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+                                             completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition
+                                              disposition, NSURLCredential * __nullable credential))completionHandler;
+                                              
+//后台下载类型session的task 完成的delegate                                              
+* - (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session NS_AVAILABLE_IOS(7_0);
 
 
 2.会话配置： NSURLSessionConfiguration
 
 {% highlight Objective-C %}
 + (NSURLSessionConfiguration *)defaultSessionConfiguration;
+
 + (NSURLSessionConfiguration *)ephemeralSessionConfiguration;
+
 + (NSURLSessionConfiguration *)backgroundSessionConfigurationWithIdentifier:(NSString *)identifier NS_AVAILABLE(10_10, 8_0);
 {% endhighlight %}  
 
@@ -115,46 +127,22 @@ NSURLSessionConfiguration有很多属性，以下是几个常见的属性：
 从其定义中我们可以看到NSURLSessionTask的类结构:
 {% highlight Objective-C %}
 
-/*
- * An NSURLSessionDataTask does not provide any additional
- * functionality over an NSURLSessionTask and its presence is merely
- * to provide lexical differentiation from download and upload tasks.
- */
 @interface NSURLSessionDataTask : NSURLSessionTask
 @end
-
-/*
- * An NSURLSessionUploadTask does not currently provide any additional
- * functionality over an NSURLSessionDataTask.  All delegate messages
- * that may be sent referencing an NSURLSessionDataTask equally apply
- * to NSURLSessionUploadTasks.
- */
 @interface NSURLSessionUploadTask : NSURLSessionDataTask
 @end
-
-/*
- * NSURLSessionDownloadTask is a task that represents a download to
- * local storage.
- */
 @interface NSURLSessionDownloadTask : NSURLSessionTask
 {% endhighlight %}  
 
-我们看一下NSURLSessionTask的创建：
-1. 数据获取：  
+我们看一下NSURLSessionTask的创建： 
+
+1. 数据获取：    
 {% highlight Objective-C %}
-/*
- * data task convenience methods.  These methods create tasks that
- * bypass the normal delegate calls for response and data delivery,
- * and provide a simple cancelable asynchronous interface to receiving
- * data.  Errors will be returned in the NSURLErrorDomain, 
- * see <Foundation/NSURLError.h>.  The delegate, if any, will still be
- * called for authentication challenges.
- */
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error))completionHandler;
 - (NSURLSessionDataTask *)dataTaskWithURL:(NSURL *)url completionHandler:(void (^)(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error))completionHandler;
 {% endhighlight %}  
 
-2.上传
+2.上传  
 {% highlight Objective-C %}
 /*
  * upload convenience method.
@@ -162,7 +150,8 @@ NSURLSessionConfiguration有很多属性，以下是几个常见的属性：
 - (NSURLSessionUploadTask *)uploadTaskWithRequest:(NSURLRequest *)request fromFile:(NSURL *)fileURL completionHandler:(void (^)(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error))completionHandler;
 - (NSURLSessionUploadTask *)uploadTaskWithRequest:(NSURLRequest *)request fromData:(nullable NSData *)bodyData completionHandler:(void (^)(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error))completionHandler;  
 {% endhighlight %}  
-3. 下载  
+
+3. 下载    
 {% highlight Objective-C %}
 /*
  * download task convenience methods.  When a download successfully
@@ -176,27 +165,75 @@ NSURLSessionConfiguration有很多属性，以下是几个常见的属性：
 {% endhighlight %}  
 
  
- 
- 
+实战示例：   
+1. 最简单的基本示例  
 {% highlight Objective-C %}
- //仅以iOS9为示例，以前的很多方法都deprecated了。
-    NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
-    NSString *encodeUrlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encodeUrlStr]];
-    NSURLSession *session = [NSURLSession sharedSession];
-    [[session dataTaskWithRequest:request completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
+NSString *encodeUrlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encodeUrlStr]];
+NSURLSession *session = [NSURLSession sharedSession];
+[[session dataTaskWithRequest:request completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         NSLog(@"errorInfo:[%ld]",(long)error.code);
-        dispatch_async(dispatch_get_main_queue(),^{
-            _textView.text = [[NSString  alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        });
+        NSLog(@"result:%@",[[NSString  alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     }]resume];
 {% endhighlight %}  
 
 
+2. 使用NSURLSessionConfiguration的示例：
+{% highlight Objective-C %}
+NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
+    NSString *encodeUrlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encodeUrlStr]];
+    
+#if TARGET_OS_IPHONE
+    NSString *cachePath = @"/MyCacheDirectory";
+    
+    NSArray *myPathList = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *myPath    = [myPathList  objectAtIndex:0];
+    
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    
+    NSString *fullCachePath = [[myPath stringByAppendingPathComponent:bundleIdentifier] stringByAppendingPathComponent:cachePath];
+    NSLog(@"Cache path: %@\n", fullCachePath);
+#else
+    NSString *cachePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"/nsurlsessiondemo.cache"];
+    
+    NSLog(@"Cache path: %@\n", cachePath);
+#endif
+    
+    NSURLCache *myCache = [[NSURLCache alloc] initWithMemoryCapacity: 16384 diskCapacity: 268435456 diskPath: cachePath];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForRequest = 10;
+    sessionConfig.timeoutIntervalForResource = 5;
+    sessionConfig.allowsCellularAccess = YES;
+    
+    sessionConfig.URLCache = myCache;
+    sessionConfig.requestCachePolicy = NSURLRequestUseProtocolCachePolicy;
+
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+        NSLog(@"errorInfo:[%ld]",(long)error.code);
+        NSLog(@"result:%@",[[NSString  alloc]initWithData:data encoding:NSUTF8StringEncoding]);        
+    }];
+    [dataTask resume];
+{% endhighlight %}  
+
+> 若想使用更细的控制，可以用不Block,直接使用delegate
+>  
+> {% highlight Objective-C %}
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
+> {% endhighlight %}  
 
 
+参考：  
+本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！   
 
-http://www.cocoachina.com/industry/20131106/7304.html
+ > * http://hayageek.com/ios-nsurlsession-example/
+ > * http://www.cnblogs.com/biosli/p/iOS_Network_URL_Session.html
+ > * https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/Articles/UsingNSURLSession.html
 
 
  
