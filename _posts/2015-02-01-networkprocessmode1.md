@@ -221,12 +221,41 @@ NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
     [dataTask resume];
 {% endhighlight %}  
 
-> 若想使用更细的控制，可以用不Block,直接使用delegate
->  
-> {% highlight Objective-C %}
+若想使用更细的控制，可以用不Block,直接使用delegate
+ 
+ {% highlight Objective-C %}
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
-> {% endhighlight %}  
+ {% endhighlight %}  
 
+
+{% highlight Objective-C %}
+#pragma mark NSURLSessionDataDelegate
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    NSLog(@"### handler 1");
+    
+    completionHandler(NSURLSessionResponseAllow);
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+    NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"Received String %@",str);
+}
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error
+{
+    if(error == nil)
+    {
+        NSLog(@"Download is Succesfull");
+    }
+    else
+        NSLog(@"Error %@",[error userInfo]);
+}
+{% endhighlight %}  
 
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！   
