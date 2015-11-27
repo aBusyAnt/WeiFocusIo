@@ -221,7 +221,7 @@ NSString *urlStr = @"http://www.weather.com.cn/data/sk/101010100.html";
     [dataTask resume];
 {% endhighlight %}  
 
-若想使用更细的控制，可以用不Block,直接使用delegate
+若想使用更细的控制，可以用delegate替换block
  
  {% highlight Objective-C %}
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
