@@ -14,9 +14,10 @@ Core Graphics 是iOS上层UIKit实现的基础，为了更好的了解iOS的绘�
 ![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img1.png)   
 
 但是我们在实际的开发过程中经常看到Core Graphics与Quartz混合使用，这二者到底是什么关系？
-> iOS Developer Library中有很清晰的说明：    
-> The Quartz 2D API is part of the Core Graphics framework, so you may see Quartz referred to as Core Graphics or, simply, CG.  
-> Core Graphics是一套用C写的、非面向对象的API，而Quzrtz是其一部分，是Core Graphics进行2D绘制的引擎。
+
+> iOS Developer Library中有很清晰的说明：     
+> The Quartz 2D API is part of the Core Graphics framework, so you may see Quartz referred to as Core Graphics or, simply, CG.    
+> Core Graphics是一套用C写的、非面向对象的API，而Quzrtz是其一部分，是Core Graphics进行2D绘制的引擎。  
 
 绘制的基本步骤:   
 
