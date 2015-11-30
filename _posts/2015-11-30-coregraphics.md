@@ -9,6 +9,8 @@ tags: ['Core Graphics']
 
 Core Graphics 是iOS上层UIKit实现的基础，为了更好的了解iOS的绘制体系，学习Core Graphics很有必要。自定义控件也都基于Core Graphics，所以要想在iOS开发中进行更高级的开发，必然要了解Core Graphics。
 
+<!--more-->
+
 ![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img1.png)   
 
 但是我们在实际的开发过程中经常看到Core Graphics与Quartz混合使用，这二者到底是什么关系？
