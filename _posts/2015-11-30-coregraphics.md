@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "coregraphics"
+title: "Core Graphics"
 description: ""
 category: 'Core Graphics'
 tags: ['Core Graphics']
