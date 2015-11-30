@@ -23,6 +23,12 @@ Core Graphics 是iOS上层UIKit实现的基础，为了更好的了解iOS的绘�
 
 > 获得绘制上下文 -> 创建路径并添加到上下文 -> 画笔移动到相应的绘制位置 ->设置画笔属性  -> 绘制 -> 释放创建的路径
 
+绘制的方式一般分为三种：
+
+* 直接按顺序一步一步画
+* 利用CGPath
+* 利用UIBezierPath
+
 
 # 基本示例 :
 {% highlight Objective-C %}
@@ -86,9 +92,9 @@ Core Graphics绘制的设计原理跟人们绘画道理是一样的，用画笔�
 ![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img5.png)   
 
 # 曲线绘制  
-曲线绘制是利用贝塞尔曲线的知识，利用控制点进行的。
+曲线绘制是利用贝塞尔曲线的知识，利用控制点进行的，详情的使用请参考[Drawing and Printing Guide for iOS](https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156)  。
 
-![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img6.gif)   
+![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img6.png)   
 
 {% highlight Objective-C %}
 - (void)curveDraw{
@@ -162,8 +168,33 @@ Core Graphics绘制的设计原理跟人们绘画道理是一样的，用画笔�
 ![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img8.png)   
 
 # UIBezierPath
+前面使用了2种方式来实现了基本的绘制，现在我们一起来看一下UIBezierPath，UIBezierPath是对CGPath的上层封装，它以UI开头而不是CG开头，明显是上层UIKit层的API了，我们看一下利用上层的API如何进行绘制。
+{% highlight Objective-C %}
+- (void)bezierDraw{   
+    
+    UIBezierPath *aPath = [UIBezierPath bezierPath];
+    // Set the starting point of the shape.
+    [aPath moveToPoint:CGPointMake(100.0, 0.0)];
+    
+    // Draw the lines.
+    [aPath addLineToPoint:CGPointMake(200.0, 40.0)];
+    [aPath addLineToPoint:CGPointMake(160, 140)];
+    [aPath addLineToPoint:CGPointMake(40.0, 140)];
+    [aPath addLineToPoint:CGPointMake(0.0, 40.0)];
+    //勾勒还是填充stroke or fill
+    [aPath stroke];
+    [aPath closePath];
+    
+    UIBezierPath *arcPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(300, 300) radius:30 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    [[UIColor redColor] setFill];
+    [arcPath fill];
+}
 
+{% endhighlight %}  
 
+效果图：   
+![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img8.png)   
+其它关于UIBezierPath更高级的功能请参考 [Drawing and Printing Guide for iOS](https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156)  ，[iOS绘图教程](http://www.cnblogs.com/xdream86/archive/2012/12/12/2814552.html)
 
 
 参考：  
@@ -173,3 +204,4 @@ Core Graphics绘制的设计原理跟人们绘画道理是一样的，用画笔�
  > * [Quartz 2D Programming Guide](https://developer.apple.com/library/prerelease/ios/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007533-SW1)  
  > * [Core Graphics Tutorial: Lines, Rectangles, and Gradients](http://www.raywenderlich.com/32283/core-graphics-tutorial-lines-rectangles-and-gradients)  
  > * [Core Graphics Tutorial: Arcs and Paths](http://www.raywenderlich.com/33193/core-graphics-tutorial-arcs-and-paths)  
+ > * [iOS绘图教程](http://www.cnblogs.com/xdream86/archive/2012/12/12/2814552.html)
