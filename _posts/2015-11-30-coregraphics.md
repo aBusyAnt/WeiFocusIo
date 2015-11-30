@@ -87,7 +87,8 @@ Core Graphics绘制的设计原理跟人们绘画道理是一样的，用画笔�
 
 # 曲线绘制  
 曲线绘制是利用贝塞尔曲线的知识，利用控制点进行的。
-![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img6.png)   
+
+![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img6.gif)   
 
 {% highlight Objective-C %}
 - (void)curveDraw{
