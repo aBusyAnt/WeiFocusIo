@@ -193,7 +193,7 @@ Core Graphics绘制的设计原理跟人们绘画道理是一样的，用画笔�
 {% endhighlight %}  
 
 效果图：   
-![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img8.png)   
+![image]({{ site.attachment }}/posts/2015-11-30-coregraphics-img9.png)   
 其它关于UIBezierPath更高级的功能请参考 [Drawing and Printing Guide for iOS](https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156)  ，[iOS绘图教程](http://www.cnblogs.com/xdream86/archive/2012/12/12/2814552.html)
 
 
