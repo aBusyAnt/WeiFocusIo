@@ -7,6 +7,11 @@ tags: ['数据持久化']
 ---
 {% include JB/setup %}
 
+我们看一下Core Data的结构:
+
+![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img1.jpg)   
+
+
 
 <!--more-->
 
