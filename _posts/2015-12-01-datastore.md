@@ -2,7 +2,7 @@
 layout: post
 title: "iOS中的数据持久化之[NSUserDefault]"
 description: ""
-category: '数据持久化''
+category: '数据持久化'
 tags: ['数据持久化']
 ---
 {% include JB/setup %}
@@ -14,6 +14,8 @@ iOS中的数据持久化有以下几种方式:
 * 自定义文件
 * CoreData
 * Sqlite或其它数据库
+
+<!--more-->
 
 # 一. NSUserDefault
 这种是最简单的一种数据存储方式，非常的轻量级，其实就是建立的一个Plist文件，也就是XML文件。存储的数据必须是可序列化的数据，如NSString、NSNumber、NSDate、NSDictionary、NSArray、NSData.
