@@ -6,7 +6,7 @@ category: '数据持久化'
 tags: ['数据持久化']
 ---
 {% include JB/setup %}
-任何语言、平台的开发都会涉及到数据的存储问题，我们称之为数据的持久化，在iOS中必然也会有这种应用场景，比如数据缓存、自动登录信息、不 变的固话信息等等。
+任何语言、平台的开发都会涉及到数据的存储问题，我们称之为数据的持久化，在iOS中必然也会有这种应用场景，比如数据缓存、自动登录信息、不变的固化信息等等。
 
 iOS中的数据持久化有以下几种方式: 
 
@@ -19,7 +19,7 @@ iOS中的数据持久化有以下几种方式:
 
 # 一. NSUserDefault
 这种是最简单的一种数据存储方式，非常的轻量级，其实就是建立的一个Plist文件，也就是XML文件。存储的数据必须是可序列化的数据，如NSString、NSNumber、NSDate、NSDictionary、NSArray、NSData.
-如果是自定交对象，则必须先要进行归档，然后才能存入NSUserDefault中，所谓归档，其实就是使用NSCoding协议将自定义对象转换成010100...这种序列。
+如果是自定义对象，则必须先要进行归档，然后才能存入NSUserDefault中，所谓归档，其实就是使用NSCoding协议将自定义对象转换成010100...这种序列。
 
 我们先来试一下默认支持的类型:
 
@@ -87,18 +87,21 @@ iOS中的数据持久化有以下几种方式:
 {% endhighlight %}  
 
 看一下运行结果中读取出来的数据:
+
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-img1.png)   
 
 再看一下存储的plist文件:
 找到模拟器中该Plist所在路径:
+
 > /Users/xxx/Library/Developer/CoreSimulator/Devices/6B7775CC-6306-4A6E-BD2F-415901F1E412/data/Containers/Data/Application/3958BD1F-EB56-4EE0-A288-D4DBC0D1B717/Library/Preferences/com.weifocusio.GLDataStoreDemo.plist
 
 文件内容:
+
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-img2.png)   
 
 
 再来看一下自定义对象：
-元数据一个一个的平等存储太过繁琐，一般更多的是以对象的方式一次性处理、存储，我们先不进行归档序列化试一下:
+元数据一个一个的平行存储太过繁琐，一般更多的是以对象的方式一次性处理、存储，我们先不进行归档序列化试一下:
 
 {% highlight Objective-C %}
 //定义User
@@ -143,8 +146,10 @@ iOS中的数据持久化有以下几种方式:
 {% endhighlight %}  
 
 结果运行报错：
+
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-img3.png)   
-就是提示试图写入非序列化的数据。
+
+意思就是:试图写入非序列化的数据。
 
 我们来修改一下，添加NSCoding序列化:
 
@@ -227,5 +232,5 @@ iOS中的数据持久化有以下几种方式:
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-img4.png)   
 
 # 二. 自定义文件
-这个就不多讲了，就是按自己定义的格式写入文件，从文件读出数据并解析，这种方式一般是比较底层的操作，比较在C/C++中我们一般都会要自己处理这种文件的写入与读取的解析处理。但是上层的应用，我们的主要精力应该放在业务处理上，而不应该在这种底层功能上浪费太多时间。
+这个就不多讲了，就是按自己定义的格式写入文件，从文件读出数据并解析，这种方式一般是比较底层的操作，比如在C/C++中我们一般都需要自己处理这种文件的写入与读取的解析处理，在Linux/Unix中的各种配置文件的写入与解析等。但是上层的应用，我们的主要精力应该放在业务处理上，而不应该在这种底层功能上浪费太多时间。
 
