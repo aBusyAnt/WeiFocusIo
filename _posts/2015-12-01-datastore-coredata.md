@@ -147,8 +147,8 @@ Core Data其实是非常的复杂的，光讲Core Data的书都有很多，我�
 
 对相关联的数据表的相关字段建立相应的外键约束关系，一方面有助于我们的逻辑梳理，能够建立完善的数据模型，另一方面也有助于程序开发过程中的错误的检查，数据库会根据外键关系而避免一些程序的错误操作。
 
-> CoreData的外键关系建立可以按如下方式:       
-> * User中必然会有一个字段表示该user属于哪个group，我们在User对象中添加一个Relationship命名为group, Destination为Group.  
+> CoreData的外键关系建立可以按如下方式:        
+> * User中必然会有一个字段表示该user属于哪个group，我们在User对象中添加一个Relationship命名为group, Destination为Group.   
 > * 在Group中添加一个反向关系，命名为user,Destination为User,Inverse为上一步为User建立的一个relationship：group。建立好此relationship过后，上一步在User对象中建立的Relationship中反向关系设置了的那条Relationship的Inverse也会自动设置为Group中相应的Relationship。
 
 ## 4.使用key-value Map(Dictionary)方式进行数据处理
@@ -411,7 +411,7 @@ NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathCompon
  
  具体CoreData在与底层的Sqlite交互处理时，为什么会这样建立数据表，就自己琢磨吧。  
  PS：打开易车、汽车之家、爱卡APP的目录，这种明显要使用车型数据库的APP，有使用CoreData的，也有使用plist的，也有使用sqlite。 下一篇
-我们将会使用数据库的方式来实现数据的存储，下一篇学习过后，再回头看的时候，你可能会对Core Data有更深层的理解 。
+我们将会使用数据库的方式来实现数据的存储，下一篇学习过后，再回头看的时候，你可能会对Core Data有更深层的理解 。使用Core Data直接与TableView建立对应的数据关系，可以很高效的在TableView中显示数据。
 
 
 参考：  
