@@ -26,7 +26,7 @@ Core Data其实是非常的复杂的，光讲Core Data的书都有很多，我�
 
 # 实战  
 
-## 1. 新建工程,选中use Core Data。  
+## 1. 新建工程,选中Use Core Data。  
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img3.png)   
 
 ## 2.Xcode自动会创建一些必备的文件与代码,如果工程建立时并没有选中，就需要自己添加一些必备的代码与模型文件：
@@ -138,7 +138,8 @@ Core Data其实是非常的复杂的，光讲Core Data的书都有很多，我�
 {% endhighlight %}  
 
 
-## 3.创建数据结构，打开xcdatamodeld文件，添加2个实例对象，其实就是创建2个表，添加相应的属性与外键，创建数据模型时，以数据库的思想去看，去操作就很容易理解了，但是建立外键关系稍有不同。
+## 3.创建数据结构  
+打开xcdatamodeld文件，添加2个实例对象，其实就是创建2个表，添加相应的属性与外键，创建数据模型时，以数据库的思想去看，去操作就很容易理解了，但是建立外键关系稍有不同。
 
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img5.png)   
 
