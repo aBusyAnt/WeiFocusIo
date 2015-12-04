@@ -209,7 +209,7 @@ Core Data其实是非常的复杂的，光讲Core Data的书都有很多，我�
 > PS:CoreData的对象模型中的数据类型属性中并没有AutoIncrement可使用，所以如果要使用这种ID需要自己实现，不论是另外维持一个ID处理的数据，还是使用NSManagedObjectID来实现。
 
 ## 5.使用对象模式进行数据处理  
-像以上方式，即Dictionary方式进行数据读取，UserDefault数据存储也是这种方式，但种处理显然是一种过程处理逻辑，我们使用对象的模式来处理。   
+像以上方式，即Dictionary方式进行数据读取，UserDefault数据存储也是这种方式，但这种处理显然是一种过程处理逻辑，我们使用对象的模式来处理。   
 按以下方式新建模型类:  
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img7.png)     
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img8.png)     
