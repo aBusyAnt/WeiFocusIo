@@ -398,7 +398,7 @@ NS_ASSUME_NONNULL_END
 }
 {% endhighlight %}  
 
-为了更好的理解 CoreData，我们来看一下Core Data的工作过程,如下图所示，在scheme中添加运行参数:
+为了更好的理解 CoreData，我们来看一下Core Data的工作过程,如下图所示，在scheme中添加运行参数，过后我们即可在终端中看到SQL执行过程:
 
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img11.png)     
 
@@ -409,7 +409,8 @@ NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathCompon
 打开这个数据库文件看一下：    
 ![image]({{ site.attachment }}/posts/2015-12-01-datastore-coredata-img12.png)   
  
- 具体CoreData在与底层的Sqlite交互处理时，为什么会这样建立数据表，就自己琢磨吧。PS：打开易车、汽车之家、爱卡APP的目录，这种明显要使用车型数据库的APP，有使用CoreData的，也有使用plist的，也有使用sqlite。 下一篇
+ 具体CoreData在与底层的Sqlite交互处理时，为什么会这样建立数据表，就自己琢磨吧。  
+ PS：打开易车、汽车之家、爱卡APP的目录，这种明显要使用车型数据库的APP，有使用CoreData的，也有使用plist的，也有使用sqlite。 下一篇
 我们将会使用数据库的方式来实现数据的存储，下一篇学习过后，再回头看的时候，你可能会对Core Data有更深层的理解 。
 
 
