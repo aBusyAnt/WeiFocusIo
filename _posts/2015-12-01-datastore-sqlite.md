@@ -11,7 +11,9 @@ tags: ['数据持久化']
 
 
 <!--more-->
+
 ## 1.Sqlite的原生API使用
+
 以下是一个最简单的sqlite的使用示例:
 {% highlight Objective-C %}
 - (void)sqliteTest{
@@ -74,7 +76,9 @@ tags: ['数据持久化']
 
 
 ## 2.Sqlite的封装FMDB
+
 sqlite的原生API使用起来太过低级，为了更方便使用，我们一般采用FMDB等第三方封装库来进行sqlite的数据库操作。  
+
 > FMDB源码及使用文档:https://github.com/ccgus/fmdb
 
 {% highlight Objective-C %}
