@@ -24,6 +24,7 @@ Core Graphics的使用，请查看之前的文章：[Core Graphics](http://grayl
 CPU进行一般运算，而图象运算非常的复杂，在计算机体系发展过程中，为了追求更高效的图象处理，越来越多的主机独立出来了显卡，由显卡进行图象运算，当然现代的主机即便没有GPU，其实现在的CPU一般都会集成CPU运算模块，专门针对图象运算，但是当然还是会占用CPU资源，所以一般的都会采用独立的GPU来处理。  
 
 CPU与GPU的配合是非常的复杂的，比如：CPU拿到绘制数据后 传递给GPU，GPU判断是否需要重新生成纹理，或者仅仅是调整坐标。  
+
 更多的底层的绘制原理可以查看文章[Getting Pixels onto the Screen](https://www.objc.io/issues/3-views/moving-pixels-onto-the-screen/#pixels),[译文:绘制像素到屏幕](http://blog.jobbole.com/54511/)
 
 还有官方文档都做了很详细的介绍，[Core Animation Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html) ,[官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html) 
