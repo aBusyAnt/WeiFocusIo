@@ -27,8 +27,9 @@ CPU进行一般运算，而图象运算非常的复杂，在计算机体系发�
 CPU与GPU的配合是非常的复杂的，比如：CPU拿到绘制数据后 传递给GPU，GPU判断是否需要重新生成纹理，或者仅仅是调整坐标。  
 
 更多底层的绘制原理可以查看文章:  
-[Getting Pixels onto the Screen](https://www.objc.io/issues/3-views/moving-pixels-onto-the-screen/#pixels)->[译文:绘制像素到屏幕](http://blog.jobbole.com/54511/)  
-[Core Animation Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html)->[官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html) 
+
++ [Getting Pixels onto the Screen](https://www.objc.io/issues/3-views/moving-pixels-onto-the-screen/#pixels)->[译文:绘制像素到屏幕](http://blog.jobbole.com/54511/)  
++ [Core Animation Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html)->[官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html) 
 
 # UIView动画
 UIView，可以产生动画的变化包括: 
@@ -113,14 +114,15 @@ UIView，可以产生动画的变化包括:
 CAAnimation类:  
 ![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img5.png) 
 
-CALayout类:  
+CALayer类:  
 ![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img6.png) 
 
 Core Animation动画使用步骤:
-* 确定动画作用的图层CALayout    
-* 实例化CAAnimation对象    
-* 添加CAAnimation动画至CALayout上即可开始执行动画(addAnimation:forKey:)  
-* 从CALayout移除动画即可停止动画(removeAnimationForKey:)  
+
++ 确定动画作用的图层CALayout    
++ 实例化CAAnimation对象    
++ 添加CAAnimation动画至CALayout上即可开始执行动画(addAnimation:forKey:)  
++ 从CALayout移除动画即可停止动画(removeAnimationForKey:)  
 
 CAAnimation是动画抽象类，此类提供了CAMediaTiming与CAAction协议，实际动画相关的创建操作均由其子类实现:  
 CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的动画CATransition.  
