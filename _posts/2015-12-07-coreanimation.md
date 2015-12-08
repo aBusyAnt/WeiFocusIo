@@ -176,12 +176,15 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 
 * CAAnimationGroup  
 动画组，即多个动画可以加入Group后，将其添加到CALayer后并行执行。
+{% highlight Objective-C %}
 @interface CAAnimationGroup : CAAnimation
 @property(nullable, copy) NSArray<CAAnimation *> *animations;
 @end
+{% highlight Objective-C %}
 
 * CATransition 
 大家称之为转场动画，即提供移入、移出屏幕的动画.
+{% highlight Objective-C %}
 @interface CATransition : CAAnimation
 @property(copy) NSString *type;//动画类型
 @property(nullable, copy) NSString *subtype;//动画方向
@@ -189,6 +192,7 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @property float endProgress;//动画过滤结束点
 @property(nullable, strong) id filter;
 @end
+{% highlight Objective-C %}
 
 
 
