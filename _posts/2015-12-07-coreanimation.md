@@ -119,10 +119,10 @@ CALayer类:
 
 Core Animation动画使用步骤:
 
-+ 确定动画作用的图层CALayout    
++ 确定动画作用的图层CALayer    
 + 实例化CAAnimation对象    
 + 添加CAAnimation动画至CALayout上即可开始执行动画(addAnimation:forKey:)  
-+ 从CALayout移除动画即可停止动画(removeAnimationForKey:)  
++ 从CALayer移除动画即可停止动画(removeAnimationForKey:)  
 
 CAAnimation是动画抽象类，此类提供了CAMediaTiming与CAAction协议，实际动画相关的创建操作均由其子类实现:  
 CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的动画CATransition.  
