@@ -31,14 +31,14 @@ CPU与GPU的配合是非常的复杂的，比如：CPU拿到绘制数据后 传�
 [Core Animation Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html)->[官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html) 
 
 # UIView动画
-UIView，可以产生动画的变化包括:  
-* 位置变化    
-* 大小变化     
-* 拉伸  
-* 旋转  
-* 透明度变化    
-* 显示或隐藏状态变化  
-* UIView图层顺序变化   
+UIView，可以产生动画的变化包括:    
+ * 位置变化    
+ * 大小变化     
+ * 拉伸  
+ * 旋转  
+ * 透明度变化    
+ * 显示或隐藏状态变化  
+ * UIView图层顺序变化   
 
 以下是一个最基本的动画示例:  
 {% highlight Objective-C %}
