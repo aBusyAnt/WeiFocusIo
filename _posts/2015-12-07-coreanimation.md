@@ -121,11 +121,12 @@ Core Animation动画使用步骤:
 
 + 确定动画作用的图层CALayer    
 + 实例化CAAnimation对象    
-+ 添加CAAnimation动画至CALayout上即可开始执行动画(addAnimation:forKey:)  
++ 添加CAAnimation动画至CALayer上即可开始执行动画(addAnimation:forKey:)  
 + 从CALayer移除动画即可停止动画(removeAnimationForKey:)  
 
 CAAnimation是动画抽象类，此类提供了CAMediaTiming与CAAction协议，实际动画相关的创建操作均由其子类实现:  
-CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的动画CATransition.  
+CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的转场动画CATransition.  
+
 其中:  
 
 * CAPropertyAnimation :
@@ -141,7 +142,7 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 
 
 * CABasicAnimation:  
-如其名.基本动画类，继承自CAPropertyAnimation:  
+如其名.基本动画类，继承自CAPropertyAnimation，通过设定起点、终点、时间等参数，动画会按设定的点与参数执行。    
 {% highlight Objective-C %}
 @interface CABasicAnimation : CAPropertyAnimation
 @property(nullable, strong) id fromValue;//keyPath初始值
@@ -149,17 +150,16 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @property(nullable, strong) id byValue;
 @end
 {% endhighlight %}  
-通过设定起点、终点、时间等参数，动画会按设定的点与参数执行。
 
 * CAKeyframeAnimation:  
 关键帧动画，也如其名，就是可以设置动画执行的路径的关键点:  
 {% highlight Objective-C %}
 @interface CAKeyframeAnimation : CAPropertyAnimation
 
-//与CABasicAnimation的fromValue,toValue意义一样，只是可以设置中间的值.
+//与CABasicAnimation的fromValue,toValue意义一样，只是可以设置中间的值，而不仅仅是起点与终点.
 @property(nullable, copy) NSArray *values;
 
-//是另一种动画路径方式，只对CALayout的anchorPoint与position作用，设置path后，上面的value设置则被忽略。
+//是另一种动画路径方式，只对CALayer的anchorPoint与position作用，设置path后，上面的value设置则被忽略。
 @property(nullable) CGPathRef path;
 
 //为关键帧指定对应执行的时间点，(0~1.0),若无设置keyTimes，则关键帧时间平分。
@@ -175,7 +175,7 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 {% endhighlight %}  
 
 * CAAnimationGroup  
-动画组，即多个动画可以加入Group后，将其添加到CALayout后并行执行。
+动画组，即多个动画可以加入Group后，将其添加到CALayer后并行执行。
 @interface CAAnimationGroup : CAAnimation
 @property(nullable, copy) NSArray<CAAnimation *> *animations;
 @end
