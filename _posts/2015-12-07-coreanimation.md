@@ -109,7 +109,7 @@ UIView，可以产生动画的变化包括:
 
 
 # Core Animation   
-在深入学习Core Animation之前我们先了解一下我们将使用的各个类的层次结构:
+在深入学习Core Animation之前我们先了解一下我们将使用的各个类的层次结构:  
 
 CAAnimation类:  
 ![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img5.png) 
@@ -124,10 +124,31 @@ Core Animation动画使用步骤:
 + 添加CAAnimation动画至CALayer上即可开始执行动画(addAnimation:forKey:)  
 + 从CALayer移除动画即可停止动画(removeAnimationForKey:)  
 
+CAAnimation动画中改变layer的坐标在动画结束后会恢复，转场动画CATransition例外。
+
 CAAnimation是动画抽象类，此类提供了CAMediaTiming与CAAction协议，实际动画相关的创建操作均由其子类实现:  
 CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的转场动画CATransition.  
 
 其中:  
+
+* CAMediaTiming :  
+@protocol CAMediaTiming
+@property CFTimeInterval beginTime;
+@property CFTimeInterval duration;
+@property float speed;
+@property CFTimeInterval timeOffset;
+@property float repeatCount;
+@property CFTimeInterval repeatDuration;
+@property BOOL autoreverses;//自动恢复动画执行前的CALayer状态
+/*
+kCAFillModeRemoved:动画产生的变化在动画执行前后都不影响CALayer.
+kCAFillModeForwards:动画结束后保持动画对CALayer的影响。
+kCAFillModeBackwards:动画开始执行前就进入动画的初始状态。
+kCAFillModeBoth:前面两种同时生效
+*/
+@property(copy) NSString *fillMode;
+@end
+
 
 * CAPropertyAnimation :
 {% highlight Objective-C %}
@@ -139,6 +160,9 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @property(nullable, strong) CAValueFunction *valueFunction;
 @end
 {% endhighlight %}  
+
+CABasicAnimation动画类型支持:  
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img6.png) 
 
 
 * CABasicAnimation:  
@@ -174,7 +198,7 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @end
 {% endhighlight %}  
 
-* CAAnimationGroup  
+* CAAnimationGroup   
 动画组，即多个动画可以加入Group后，将其添加到CALayer后并行执行。  
 
 {% highlight Objective-C %}
@@ -183,7 +207,7 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @end
 {% highlight Objective-C %}
 
-* CATransition 
+* CATransition   
 大家称之为转场动画，即提供移入、移出屏幕的动画.  
 
 {% highlight Objective-C %}
@@ -195,6 +219,15 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 @property(nullable, strong) id filter;
 @end
 {% highlight Objective-C %}
+
+UIView与CALayer的关系，以及CALayer的渲染结构:   
++ UIView内部有CALayer负责绘制，Layer的坐标比View多了AnchorPoint，即锚点。
++ UIView可以看着是CALayer绘制的容器，UIView是Layer的CALayerDelegate.
++ Layer渲染结构: 其内部维护着三分Layer Tree: 动画树、模型树、渲染树.
++ 
+
+
+
 
 
 
@@ -210,4 +243,5 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
  > * [官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html)
  > * [Core Animation基本概念和Additive Animation](http://studentdeng.github.io/blog/2014/06/24/core-animation/?utm_source=tuicool&utm_medium=referral)
  > * [CoreAnimation](http://www.jianshu.com/p/ee2d3a8b2d67)
-
+ > * [View-Layer 协作](http://objccn.io/issue-12-4/)
+ > * [Layer 中自定义属性的动画](http://objccn.io/issue-12-2/)
