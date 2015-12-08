@@ -107,8 +107,85 @@ UIView，可以产生动画的变化包括:
 
 
 # Core Animation   
+在深入学习Core Animation之前我们先了解一下我们将使用的各个类的层次结构:
+
+CAAnimation类:  
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img5.png) 
+
+CALayout类:  
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img6.png) 
+
+Core Animation动画使用步骤:
+* 确定动画作用的图层CALayout    
+* 实例化CAAnimation对象    
+* 添加CAAnimation动画至CALayout上即可开始执行动画(addAnimation:forKey:)  
+* 从CALayout移除动画即可停止动画(removeAnimationForKey:)  
+
+CAAnimation是动画抽象类，此类提供了CAMediaTiming与CAAction协议，实际动画相关的创建操作均由其子类实现:  
+CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些封装好的动画CATransition.  
+其中:  
+
+* CAPropertyAnimation :
+{% highlight Objective-C %}
+@interface CAPropertyAnimation : CAAnimation
++ (instancetype)animationWithKeyPath:(nullable NSString *)path;
+@property(nullable, copy) NSString *keyPath;
+@property(getter=isAdditive) BOOL additive;
+@property(getter=isCumulative) BOOL cumulative;
+@property(nullable, strong) CAValueFunction *valueFunction;
+@end
+{% endhighlight %}  
 
 
+* CABasicAnimation:  
+如其名.基本动画类，继承自CAPropertyAnimation:  
+{% highlight Objective-C %}
+@interface CABasicAnimation : CAPropertyAnimation
+@property(nullable, strong) id fromValue;//keyPath初始值
+@property(nullable, strong) id toValue;//keyPath结束值
+@property(nullable, strong) id byValue;
+@end
+{% endhighlight %}  
+通过设定起点、终点、时间等参数，动画会按设定的点与参数执行。
+
+* CAKeyframeAnimation:  
+关键帧动画，也如其名，就是可以设置动画执行的路径的关键点:  
+{% highlight Objective-C %}
+@interface CAKeyframeAnimation : CAPropertyAnimation
+
+//与CABasicAnimation的fromValue,toValue意义一样，只是可以设置中间的值.
+@property(nullable, copy) NSArray *values;
+
+//是另一种动画路径方式，只对CALayout的anchorPoint与position作用，设置path后，上面的value设置则被忽略。
+@property(nullable) CGPathRef path;
+
+//为关键帧指定对应执行的时间点，(0~1.0),若无设置keyTimes，则关键帧时间平分。
+@property(nullable, copy) NSArray<NSNumber *> *keyTimes;
+
+@property(nullable, copy) NSArray<CAMediaTimingFunction *> *timingFunctions;
+@property(copy) NSString *calculationMode;
+@property(nullable, copy) NSArray<NSNumber *> *tensionValues;
+@property(nullable, copy) NSArray<NSNumber *> *continuityValues;
+@property(nullable, copy) NSArray<NSNumber *> *biasValues;
+@property(nullable, copy) NSString *rotationMode;
+@end
+{% endhighlight %}  
+
+* CAAnimationGroup  
+动画组，即多个动画可以加入Group后，将其添加到CALayout后并行执行。
+@interface CAAnimationGroup : CAAnimation
+@property(nullable, copy) NSArray<CAAnimation *> *animations;
+@end
+
+* CATransition 
+大家称之为转场动画，即提供移入、移出屏幕的动画.
+@interface CATransition : CAAnimation
+@property(copy) NSString *type;//动画类型
+@property(nullable, copy) NSString *subtype;//动画方向
+@property float startProgress;//动画过渡开始点
+@property float endProgress;//动画过滤结束点
+@property(nullable, strong) id filter;
+@end
 
 
 
@@ -123,3 +200,5 @@ UIView，可以产生动画的变化包括:
  > * [译文:绘制像素到屏幕](http://blog.jobbole.com/54511/)  
  > * [官方文档中译:Core Animation编程指南](http://www.cocoachina.com/ios/20131230/7627.html)
  > * [Core Animation基本概念和Additive Animation](http://studentdeng.github.io/blog/2014/06/24/core-animation/?utm_source=tuicool&utm_medium=referral)
+ > * [CoreAnimation](http://www.jianshu.com/p/ee2d3a8b2d67)
+
