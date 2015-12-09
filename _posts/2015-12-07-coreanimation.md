@@ -131,7 +131,8 @@ CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup, 或者使用Apple一些
 
 其中:  
 
-* CAMediaTiming :  
+* CAMediaTiming :    
+{% highlight Objective-C %}
 @protocol CAMediaTiming
 @property CFTimeInterval beginTime;
 @property CFTimeInterval duration;
@@ -148,6 +149,7 @@ kCAFillModeBoth:前面两种同时生效
 */
 @property(copy) NSString *fillMode;
 @end
+{% endhighlight %}  
 
 
 * CAPropertyAnimation :
@@ -221,9 +223,10 @@ CABasicAnimation动画类型支持:
 {% endhighlight %}  
 
 UIView与CALayer的关系，以及CALayer的渲染结构:   
-+ UIView内部有CALayer负责绘制，Layer的坐标比View多了AnchorPoint，即锚点。
-+ UIView可以看着是CALayer绘制的容器，UIView是Layer的CALayerDelegate.
-+ Layer渲染结构: 其内部维护着三分Layer Tree: 动画树、模型树、渲染树.
+
++ UIView内部有CALayer负责绘制，Layer的坐标比View多了AnchorPoint，即锚点。  
++ UIView可以看着是CALayer绘制的容器，UIView是Layer的CALayerDelegate.  
++ Layer渲染结构: 其内部维护着三分Layer Tree: 动画树、模型树、渲染树.  
 + 
 
 
