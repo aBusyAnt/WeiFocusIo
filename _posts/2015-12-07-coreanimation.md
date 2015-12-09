@@ -222,6 +222,36 @@ CABasicAnimation动画类型支持:
 @end
 {% endhighlight %}  
 
+# CALayer  :
+CALayer主要用于内容的绘制与动画的实现，CALayer没有包含在UIKit层，并没有实现UIResponse,所以无法响应事件，一般我们在CoreAnimation中会有一个『显式动画』和『隐式动画』，显示动画就是直接给Layer图层添加动画，进行动画的实际设置操作，如设置相关的动画路径等，而隐式动画的意思就是直接对View的Layer属性修改从而产生的动画，意思就是说CALayer的某些支持隐式动画的属性的变动由系统添加类似CABasicAnimation的动画参数，但有一个例外，就是UIView的根Layer图层，它的属性修改并不产生动画，一般UIView一般作为CALayerDelegate，即CALayer的容器使用，创建系统创建UIView时会自动为其添加一个根图层，我们需要在这个根图层上添加子图层。
+
+网友 KenshinCui把CALayer的属性列出来了，并列出了对隐式动画的支持属性，大家可以参考:   
+
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img7.png) 
+
+注意：  
++ 从上图中，我们可以看出只有frame与doubleSided不支持隐式动画。
++ CALayer的透明度由opacity表示，而不像UIView使用alpha。
++ position相当于View的center
++ CALayer的坐标比View多了AnchorPoint，即锚点，确定layer图层上哪个点在postion，用于确定相对于图层position的位置,即相对于x,y轴的比例，取值(0~1,0~1)，默认值(0.5,0.5)，以layer图层左上角原点为anchorPoint计算的原点，以layer的长宽乘以anchorPoint的比例，如layer的frame为(10,10,100,200),anchorPoint为(0.3，0.3),则layer实际显示的中心点为(100*0.3,200*0.3)，即layer上的此点与postion重合。
+
+AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的理解它了。
+
+*  layer的position为(50,50),anchorPoint为(0.5,0.5)，相当于x,y轴的50%,我们可以得到实际的layer显示的位置，即layer上与position重合的点为（100*0.5，100*0.5):    
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img8.png) 
+
+*  layer的position还是为(50,50),但是，可以明显看到layer的中心点并非如打印的结果一样在(50,50)，anchorPoint为(0,0)，即layer上与position重合的点为（100*0，100*0):  
+
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img9.png) 
+
+*  layer的position还是(50,50),但是，可以看到layer的中心点也并非如打印的结果一样在(50,50),anchorPoint为(1,1)，  即layer上与position重合的点为（100*1，100*1):   
+![image]({{ site.attachment }}/posts/2015-12-07-coreanimation-img10.png) 
+
+
+
+
+
+
 UIView与CALayer的关系，以及CALayer的渲染结构:   
 
 + UIView内部有CALayer负责绘制，Layer的坐标比View多了AnchorPoint，即锚点。  
@@ -248,3 +278,4 @@ UIView与CALayer的关系，以及CALayer的渲染结构:
  > * [CoreAnimation](http://www.jianshu.com/p/ee2d3a8b2d67)
  > * [View-Layer 协作](http://objccn.io/issue-12-4/)
  > * [Layer 中自定义属性的动画](http://objccn.io/issue-12-2/)
+ > * [iOS核心动画](http://www.cnblogs.com/kenshincui/p/3972100.html)
