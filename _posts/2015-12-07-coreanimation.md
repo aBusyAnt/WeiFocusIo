@@ -205,7 +205,7 @@ CABasicAnimation动画类型支持:
 @interface CAAnimationGroup : CAAnimation
 @property(nullable, copy) NSArray<CAAnimation *> *animations;
 @end
-{% highlight Objective-C %}
+{% endhighlight %}  
 
 * CATransition   
 大家称之为转场动画，即提供移入、移出屏幕的动画.  
@@ -218,7 +218,7 @@ CABasicAnimation动画类型支持:
 @property float endProgress;//动画过滤结束点
 @property(nullable, strong) id filter;
 @end
-{% highlight Objective-C %}
+{% endhighlight %}  
 
 UIView与CALayer的关系，以及CALayer的渲染结构:   
 + UIView内部有CALayer负责绘制，Layer的坐标比View多了AnchorPoint，即锚点。
