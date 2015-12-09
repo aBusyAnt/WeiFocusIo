@@ -237,17 +237,18 @@ CALayer主要用于内容的绘制与动画的实现，CALayer没有包含在UIK
 
 AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的理解它了。
 
-*  layer的position为(50,50),anchorPoint为(0.5,0.5)，相当于x,y轴的50%,我们可以得到实际的layer显示的位置，即layer上与position重合的点为（100 x 0.5，100 x 0.5):    
-<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img8" width="1300" height="700"/>
+*  layer的position为(50,50),anchorPoint为(0.5,0.5)，相当于x,y轴的50%,我们可以得到实际的layer显示的位置，即layer上与position重合的点为（100 x 0.5，100 x 0.5):   
+
+<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img8.png" width="1300" height="700"/>
 
 *  layer的position还是为(50,50),但是，可以明显看到layer的中心点并非如打印的结果一样在(50,50)，anchorPoint为(0,0)，即layer上与position重合的点为（100 x 0，100 x 0):  
 
-<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img9" width="1300" height="700"/>
+<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img9.png" width="1300" height="700"/>
 
 
 *  layer的position还是(50,50),但是，可以看到layer的中心点也并非如打印的结果一样在(50,50),anchorPoint为(1,1)，  即layer上与position重合的点为（100 x 1，100 x 1):  
 
-<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img10" width="1300" height="700"/>
+<img src="{{ site.attachment }}/posts/2015-12-07-coreanimation-img10.png" width="1300" height="700"/>
 
 
 
