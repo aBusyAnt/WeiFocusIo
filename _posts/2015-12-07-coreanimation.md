@@ -331,6 +331,7 @@ AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的
 我们在前面的Core Graphics中，讲了drawRect，自定义绘制就是在drawRect中绘制，其实CALayer也有类似的方法：drawInContext,其实我们前面已经说了UIView是CALayerDelegate,UIView的委托方法draw:inContext:,UIView会创建CALayer，并设置CALayer的委托为UIView，其实前面讲的drawRect方法也是在draw:inContext方法中调用的。CALayer将上下文传递给draw:inContent:,再由其传递给drawRect：，我们来创建一个自定义CAlayer图层。
 {% highlight Objective-C %}
 //GLCustomLayer.m
+//-------------------------
 #import "GLCustomLayer.h"
 @implementation GLCustomLayer
 - (void)drawInContext:(CGContextRef)ctx{
@@ -351,6 +352,7 @@ AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的
 @end
 
 //GLCustomView.m
+//-------------------------
 #import "GLCustomView.h"
 #import "GLCustomLayer.h"
 @implementation GLCustomView
@@ -383,7 +385,9 @@ AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的
     [super drawLayer:layer inContext:ctx];
 }
 
-//
+
+//Test
+//-------------------------
 - (void)customLayerTest{
     GLCustomView *customView = [[GLCustomView alloc]initWithFrame:CGRectMake(40, 40, 400, 400)];
     customView.backgroundColor = [UIColor lightGrayColor];
@@ -392,12 +396,50 @@ AnchorPoint的概念容易出问题，我们一起做个实验就可以更好的
 
 {% endhighlight %}  
 
-# 转场动画:  
+# 转场动画实例:  
+
+{% highlight Objective-C %}
+- (void)transitionTestInit{
+    _imgs = @[@"1.jpg",@"2.jpg",@"3.jpg"];
+    _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 40, 400, 200)];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.image = [UIImage imageNamed:@"0.jpg"];
+    [self.view addSubview:_imageView];
+    
+    UISwipeGestureRecognizer *leftSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipe:)];
+    leftSwipeGesture.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:leftSwipeGesture];
+    
+    UISwipeGestureRecognizer *rightSwipeGesture=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipe:)];
+    rightSwipeGesture.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:rightSwipeGesture];
+}
+
+-(void)leftSwipe:(UISwipeGestureRecognizer *)gesture{
+    [self transitionText];
+}
+
+-(void)rightSwipe:(UISwipeGestureRecognizer *)gesture{
+    [self transitionText];
+}
+
+- (void)transitionText{
+    CATransition *transition = [[CATransition alloc]init];
+    transition.type = @"cube";
+    transition.subtype = kCATransitionFromLeft;
+    transition.duration = 1.0f;
+    
+    _imageView.image = [self getImage];
+    [_imageView.layer addAnimation:transition forKey:@"transitionAnimation"];
+}
+- (UIImage *)getImage{
+    return [UIImage imageNamed:_imgs[arc4random() % _imgs.count]];
+}
+{% endhighlight %}  
 
 
 
-
-
+小结：Core Animation还有很多高级应用，本篇仅仅是抛砖引玉，作为温习的笔记。
 
 
 
