@@ -7,7 +7,7 @@ tags: ['AutoLayout']
 ---
 {% include JB/setup %}
 
-自定义View、根据数据动态调整布局等都是开发中很常见的需求，所以仅仅在IB中添加constraint不能就对所有的场景，也有开发者对autolayout不信任，总感觉没有安全感，亦或协同容易冲突，在iOS开发中能在IB中进行的操作，用代码绝对也可以，所以我们在有些时候必然要用代码来进行布局。
+自定义View、根据数据动态调整布局等都是开发中很常见的需求，所以仅仅在IB中添加constraint不能应对所有的场景，也有开发者对autolayout不信任，总感觉没有安全感，亦或协同容易冲突，在iOS开发中能在IB中进行的操作，用代码绝对也可以，所以我们在有些时候必然要用代码来进行布局。
 一般有2种方式实现约束，一种是直接添加constraint，另一种就是常说的VFL(Visual format language)，就是apple定义的一种布局约束描述的规范。
 
 <!--more-->
@@ -149,7 +149,7 @@ typedef NS_OPTIONS(NSUInteger, NSLayoutFormatOptions) {
 * metrics 是fotmat中定义的动态数据的value Dictionary。  
 * views则是要添加约束的view数组。
 
-> VFL无法处理比较约束
+> VFL无法处理比例约束，无法处理相对居中效果
 
 光看这个定义可能并不好理解 ，我们还是用VFL实现之前的效果:   
 {% highlight Objective-C %}
@@ -181,6 +181,7 @@ NSDictionary *dic = NSDictionaryOfVariableBindings(self.view,_contentView,_topBu
 
 ![image]({{ site.attachment }}/posts/2015-02-01-autolayout6-img5.png)
 
+小结：一般开发中都是多种模式，多种试搭配使用，以用最简洁的代码实现功能，比如VFL并不能应对所有场景，所有会有2种代码方式搭配使用。
 
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
