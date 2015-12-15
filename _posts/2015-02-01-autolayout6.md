@@ -183,6 +183,8 @@ NSDictionary *dic = NSDictionaryOfVariableBindings(self.view,_contentView,_topBu
 
 小结：一般开发中都是多种模式，多种试搭配使用，以用最简洁的代码实现功能，比如VFL并不能应对所有场景，所有会有2种代码方式搭配使用。
 
+本文源代码:[GLAutoLayoutDemo](https://github.com/GrayLuo/GLAutoLayoutDemo)
+
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
 
