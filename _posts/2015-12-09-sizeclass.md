@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "sizeclasses"
+title: "Size Classes"
 description: ""
 category: 
 tags: []
