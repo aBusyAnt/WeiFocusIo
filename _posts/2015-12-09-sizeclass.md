@@ -14,16 +14,13 @@ size  classes推翻了屏幕尺寸的概念，而是引入Regular、Compact概�
 
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img1.png)
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img2.png)
-
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img3.png)
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img4.png)
-
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img5.png)
-![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img6.png)
 
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img6.png)
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img7.png)
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img8.png)
-
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img9.png)
 
 难道我们每一个View都要做9个布局吗？当然不是，所有布局其实都是继承自己wAny和hAny,在此类别下布局基本的公用布局，然后在各个需要特别布局的类别下做只在其状态下的布局。相当于wAny与hAny是基类，而其它8种类别是继承自基类，在各个子类中进行相应的布局处理。  
