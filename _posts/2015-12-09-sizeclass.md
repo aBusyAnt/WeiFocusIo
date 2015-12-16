@@ -28,7 +28,7 @@ size  classes推翻了屏幕尺寸的概念，而是引入Regular、Compact概�
 我们在选择类别时，XCode提示我们此布局对应于相应的设备屏幕尺寸：  
 我们9种模式下分别修改布局内容，然后查看预览即可看到只会在对应的屏幕尺寸下有效。  
 
-##  + Compact Width | Compact Height : 3.5寸、4寸、4.7寸 三种尺寸横屏时有效。  
+##  1、 Compact Width | Compact Height : 3.5寸、4寸、4.7寸 三种尺寸横屏时有效。  
 
 + 切换到Compact Width|Compact Height类别下，添加Label,添加约束：距superview top高度、宽度、水平居中。    
 + 添加4种尺寸的预览，3.5-inch、4-inch、4.7-inch、5.5-inch,本文仅使用这4种iphone尺寸做示例，就不添加ipad和apple watch的预览了。   
@@ -37,21 +37,21 @@ size  classes推翻了屏幕尺寸的概念，而是引入Regular、Compact概�
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img11.png)  
 
 
-## + wAny | hCompact : 对所有尺寸的横屏有效。   
+## 2、 wAny | hCompact : 对所有尺寸的横屏有效。   
 
 + 切换到wAny | hCompact模式：添加Label2，添加约束：label2 top与Label1 bottom固定距离、固定宽度、水平居中。  
 + 预览4种尺寸效果:  
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img12.png)    
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img13.png)    
 
-## + wRegular | hCompact : 仅针对5.5寸横屏。   
+## 3、 wRegular | hCompact : 仅针对5.5寸横屏。   
 
 + 切换到Regular | hCompact 模式，添加Label3,添加约束:label3 top与Label2 bottom固定距离、固定宽度、水平居中。  
 + 预览4种尺寸效果:  
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img14.png)     
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img15.png)    
 
-## + wCompact | hAny :  仅针对宽度紧凑布局的情况：3.5、4、4.7、5.5竖屏时，3.5、4、4.7横屏时。 
+## 4、 wCompact | hAny :  仅针对宽度紧凑布局的情况：3.5、4、4.7、5.5竖屏时，3.5、4、4.7横屏时。 
 
 + 切换到wCompact | hAny 模式，添加Label4,添加约束:label4 top与superview固定距离、固定宽度、水平居中。   
 + 预览4种尺寸的竖屏与横屏时的效果:    
@@ -59,23 +59,23 @@ size  classes推翻了屏幕尺寸的概念，而是引入Regular、Compact概�
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img17.png)  
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img18.png)  
 
-## + wAny | hAny :   针对所有屏幕尺寸的竖屏与横屏情况。
+## 5、 wAny | hAny :   针对所有屏幕尺寸的竖屏与横屏情况。
 + 切换到wAny | hAny 模式，添加Label5,添加相应约束。
 + 预览4种尺寸的竖屏与横屏时的效果:    
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img21.png)    
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img19.png)       
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img20.png)    
 
-## + wRegular | hAny :   针对所有宽度宽松布局(regular)的情况，4种尺寸的竖屏与横屏8种情况下，只有5.5寸横屏时有效，ipad横屏与竖屏时有效。     
+## 6、 wRegular | hAny :   针对所有宽度宽松布局(regular)的情况，4种尺寸的竖屏与横屏8种情况下，只有5.5寸横屏时有效，ipad横屏与竖屏时有效。     
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img24.png)    
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img22.png)    
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img23.png)       
 
-## + wCompact | hRegular : 所有屏幕尺寸竖屏时有效。就不贴图了。    
+## 7、 wCompact | hRegular : 所有屏幕尺寸竖屏时有效。就不贴图了。    
 
-## + wAny | hRegular : 所有高度宽松布局(regular)的情况，所有iphone 4种尺寸的竖屏，ipad竖屏与横屏时有效。就不贴图了。  
+## 8、 wAny | hRegular : 所有高度宽松布局(regular)的情况，所有iphone 4种尺寸的竖屏，ipad竖屏与横屏时有效。就不贴图了。  
 
-## + wRegular | hRegular : ipad横屏与竖屏时有效。就不贴图了。  
+## 9、 wRegular | hRegular : ipad横屏与竖屏时有效。就不贴图了。  
 
 本文示例storyboard: [SizeClassesMain.storyboard]({{ site.attachment }}/files/SizeClassesMain.storyboard)
 
