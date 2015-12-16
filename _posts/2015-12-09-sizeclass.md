@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Size Classes"
+title: "Size Classes(一)[基本概念]"
 description: ""
-category: 
-tags: []
+category: 'Size Classes'
+tags: ['Size Classes']
 ---
 {% include JB/setup %}
 
@@ -59,9 +59,24 @@ size  classes推翻了屏幕尺寸的概念，而是引入Regular、Compact概�
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img17.png)  
 ![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img18.png)  
 
-## wAny | hAny :     
-## wRegular | hAny :     
-## wCompact | hRegular :   
-## wAny | hRegular :   
-## wRegular | hRegular :   
+## wAny | hAny :   针对所有屏幕尺寸的竖屏与横屏情况。
++ 切换到wAny | hAny 模式，添加Label5,添加相应约束。
++ 预览4种尺寸的竖屏与横屏时的效果:    
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img21.png)    
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img19.png)       
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img20.png)    
+
+## wRegular | hAny :   针对所有宽度宽松布局(regular)的情况，4种尺寸的竖屏与横屏8种情况下，只有5.5寸横屏时有效，ipad横屏与竖屏时有效。     
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img24.png)    
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img22.png)    
+![image]({{ site.attachment }}/posts/2015-12-09-sizeclass-img23.png)       
+
+## wCompact | hRegular : 所有屏幕尺寸竖屏时有效。就不贴图了。    
+
+## wAny | hRegular : 所有高度宽松布局(regular)的情况，所有iphone 4种尺寸的竖屏，ipad竖屏与横屏时有效。就不贴图了。  
+
+## wRegular | hRegular : ipad横屏与竖屏时有效。就不贴图了。  
+
+本文示例storyboard: [SizeClassesMain.storyboard]({{ site.attachment }}/files/SizeClassesMain.storyboard)
+
 
