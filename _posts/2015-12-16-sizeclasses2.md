@@ -12,6 +12,7 @@ tags: ['Size Classes']
 <!--more-->
 
 ## 在代码中根据业务调整约束:    
+不论是在IB中，还是如前面文章[AutoLayout深入浅出五[纯代码的偏执]](http://grayluo.github.io/WeiFocusIo/autolayout/2015/02/01/autolayout6)所述的代码中添加的约束，添加相应的引用，然后根据相应业务调整这些约束即可。
 
 ## 在代码中针对不同设备调整布局:  
 
