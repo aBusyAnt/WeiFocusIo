@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Size Classes(一)[基本概念]"
+title: "Size Classes(一)[基本概念与IB中的使用]"
 description: ""
 category: 'Size Classes'
 tags: ['Size Classes']
