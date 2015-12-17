@@ -14,10 +14,10 @@ description: ""
         </div>
             <p class="author-bio"><a href="http://weibo.com/u/1850031017">@WeiFocus</a> 是一名移动互联网从业者，主要从事iOS开发，目前正游荡在移动互联网浪潮中，至今未有成就。</p>
             <p>
-            	从毕业到现在也有5年多了，看过了无数代码，写过了无数代码，用C/C++做了一两年嵌入式Linux的开发，在智能手机兴起的最关键时候，我也下到了这片热海步入到了移动互联网行业，基本的主要工作还是使用ObjectC进行iOS的开发，但也玩PHP、Python、Java等，目前正在深入使用swift。
+            	从毕业到现在也有6年多了，工作就是看代码、写代码，一开始用C/C++做了一两年嵌入式Linux的开发，在智能手机兴起的最关键时候，我也下到了这片热海步入到了移动互联网行业，基本的主要工作还是使用Objective-C or Swift 进行iOS的开发，但也玩PHP、Python、Java等。
             </p>
             <p>
-				在这里，我主要使用Swift进行iOS端的开发，用LAMP进行服务端开发，从项目的需求开始一步一步构建完整的项目，希望能够有帮到你的片段。
+				这里，我主要是记录自己平时学习或者温习的一些片断，希望能够对你有所帮助。
 			</p>
             <div>
             工作联系：<a href="mailto:guohui.great@gmail.com">点击发送邮件</a>   ,  <a href="http://www.weibo.com/weifocusio">微博私信</a>
