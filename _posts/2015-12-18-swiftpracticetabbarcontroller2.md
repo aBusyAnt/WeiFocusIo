@@ -46,13 +46,19 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 {% endhighlight %}  
 
 UITabBarController有几个基本属性：
+
 + viewControllers ： 即UITabBarController的平行抽屉容器。  
+
 + selectedIndex : 当前选中的容器序号。  
+
 + selectedViewController : 当前选中的容器。  
-+ tabBar : 可以通过tabBar获取，此属性仅仅是提供给UIActionSheet 的 showFromTabBar: 使用。  
+
++ tabBar : 可以通过tabBar获取，此属性仅仅是提供给UIActionSheet 的 showFromTabBar: 使用。    
+
 > // Provided for -[UIActionSheet showFromTabBar:]. Attempting to modify the contents of the tab bar directly will throw an exception.
 
 + moreNavigationController:  只读，这个属性始终会返回一个有效的More navigation Controller，这个属性是系统自动添加的，而且在viewControllers中也是找不到的，当屏幕尺寸无法显示全部的TabbarItem时，则会把无法显示的添加到此More item中。
+
 + customizableViewControllers : 即运行时，可以调整Tabbar的先后顺序。  
 
 还有几个扩展:  
