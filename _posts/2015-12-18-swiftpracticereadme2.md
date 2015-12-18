@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "swiftpracticereadme2"
+title: "Cocoa-Swift之序"
 description: ""
-category: 
-tags: []
+category: 'Cocoa-Swift'
+tags: ['Cocoa-Swift']
 ---
 {% include JB/setup %}
 
