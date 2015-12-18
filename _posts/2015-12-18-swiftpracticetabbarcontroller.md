@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Cocoa-Swift实战-UITabBarController相关"
+title: "Cocoa-Swift之UITabBarController相关"
 description: ""
-category:'Cocoa Practice With Swift' 
-tags: ['Cocoa Practice With Swift']
+category:'Cocoa Swift' 
+tags: ['Cocoa Swift']
 ---
 {% include JB/setup %}
 

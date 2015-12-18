@@ -3,7 +3,7 @@ layout: post
 title: "Cocoa-Swift之序"
 description: ""
 category:'Cocoa Swift' 
-tags: ['Cocoa Practice With Swift']
+tags: ['Cocoa Swift']
 ---
 {% include JB/setup %}
 
