@@ -18,7 +18,7 @@ Tabbar是最常见的一种布局结构，这种结构有一个最大的好处�
 + 你IB中直接拉出UITabBarController,然后分别设置、添加 或者删除viewControllers的成员。  
 
 为了更好的演示，我们这里全使用代码来操作,eg：    
-{% highlight Swift %}  
+{% highlight swift %}  
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         let tabBarController = UITabBarController()
@@ -57,7 +57,7 @@ UITabBarController有几个基本属性：
 
 UITabBarItem :
 实例化方法，不解释:
-{% highlight Swift %}  
+{% highlight swift %}  
 public convenience init(title: String?, image: UIImage?, tag: Int)
 @available(iOS 7.0, *)
 public convenience init(title: String?, image: UIImage?, selectedImage: UIImage?)
@@ -67,7 +67,7 @@ public convenience init(tabBarSystemItem systemItem: UITabBarSystemItem, tag: In
 
 # 修改UITabBarController样式:   
 在修改其样式前，我们先看一下其UITabBar的定义中与颜色、背景图片、样式等外观相关的定义:    
-{% highlight Swift %}  
+{% highlight swift %}  
 public class UITabBar : UIView {
 	...	
     public var tintColor: UIColor!
@@ -90,17 +90,17 @@ public class UITabBar : UIView {
 + 修改背景色 以下有3种方式可以修改 :   
 
 1、像如下这样直接修改是无效的:     
-{% highlight Swift %}  
+{% highlight swift %}  
 tabBarController.tabBar.backgroundColor = UIColor.greenColor()
 {% endhighlight %}  
 
 2、修改barTintColor可修改背景色:     
-{% highlight Swift %}  
+{% highlight swift %}  
 tabBarController.tabBar.barTintColor = UIColor.redColor()
 {% endhighlight %}  
 
 3、可在tabBar上添加一个子view，并设置其在视图中的前台顺序，以作为背景色，这种方式在老版的iOS中，很多人都这样做，屡试不爽^_^    
-{% highlight Swift %}  
+{% highlight swift %}  
 let tabBarSize = tabBarController.tabBar.bounds.size
 let bgView = UIView(frame: CGRect(x: 0, y: 0, width:tabBarSize.width  , height: tabBarSize.height))
 bgView.backgroundColor = UIColor.greenColor()
@@ -109,18 +109,18 @@ tabBarController.tabBar.insertSubview(bgView, atIndex: 1)
 
 4、制作颜色图片作为背景:  
 虽然UITabBar的定义并未提供backgoundColor修改方法，但是却提供了backgroundImage修改方法，所以我们可以制作一个9像素的小方块图片，然后使用resizableImageWithCapInsets制作一个背景图片。  
-{% highlight Swift %}  
+{% highlight swift %}  
 let bgImage = UIImage(named: "tabBarBgImage")?.resizableImageWithCapInsets(UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1))
 tabBarController.tabBar.backgroundImage = bgImage;
 {% endhighlight %}  
 
 + 修改选中item的title、图片 渲染的前景色:    
-{% highlight Swift %}  
+{% highlight swift %}  
 tabBarController.tabBar.tintColor = UIColor.greenColor()
 {% endhighlight %}  
 
 + 修改item图片的渲染模式，eg，使用原图:   
-{% highlight Swift %}  
+{% highlight swift %}  
 for vc in tabBarController.viewControllers!{
     vc.tabBarItem.image = vc.tabBarItem.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     vc.tabBarItem.selectedImage = vc.tabBarItem.selectedImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -135,7 +135,7 @@ for vc in tabBarController.viewControllers!{
 
 + 阴影图片shadowImage：  
 tabBar上部有一个默认的阴影,我们可以修改:   
-{% highlight Swift %}    
+{% highlight swift %}    
 let bgImage = UIImage(named: "tabBarBgImage")?.resizableImageWithCapInsets(UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1))
 tabBarController.tabBar.backgroundImage = bgImage
 
@@ -153,7 +153,7 @@ tabBarController.tabBar.shadowImage = UIImage(named: "tabBarBgShawImage")
 + 修改item的位置、尺寸:    
 要修改item位置、尺寸首先设置items的布局模式，如fill,center。
 我们要想体现出item的宽度、间距的变化，就需要先设置:     
-{% highlight Swift %}    
+{% highlight swift %}    
 tabBarController.tabBar.itemPositioning = UITabBarItemPositioning.Centered
 
 tabBarController.tabBar.itemSpacing = 20
