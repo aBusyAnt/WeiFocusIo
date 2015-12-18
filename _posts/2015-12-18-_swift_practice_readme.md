@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Cocoa-Swift实战]Readme"
+title: "Cocoa-Swift实战-Readme"
 description: ""
 category:'Cocoa Practice With Swift' 
 tags: ['Cocoa Practice With Swift']
