@@ -62,7 +62,9 @@ UITabBarController有几个基本属性：
 + customizableViewControllers : 即运行时，可以调整Tabbar的先后顺序。  
 
 还有几个扩展:  
+
 + tabBarItem: UITabBarItem! 
+
 + tabBarController: UITabBarController? { get }
 
 UITabBarItem :
@@ -171,3 +173,57 @@ tabBarController.tabBar.itemWidth  = 20
 {% endhighlight %}  
 
 ![image]({{ site.attachment }}/posts/2015-12-18-_swift_practice_tabbarcontroller-img2.png)
+
+#  UITabBarControllerDelegate  
+
+{% highlight swift %}    
+public protocol UITabBarControllerDelegate : NSObjectProtocol {
+    
+    @available(iOS 3.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool
+    @available(iOS 2.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController)
+    
+    @available(iOS 3.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, willBeginCustomizingViewControllers viewControllers: [UIViewController])
+    @available(iOS 3.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, willEndCustomizingViewControllers viewControllers: [UIViewController], changed: Bool)
+    @available(iOS 2.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, didEndCustomizingViewControllers viewControllers: [UIViewController], changed: Bool)
+    
+    @available(iOS 7.0, *)
+    optional public func tabBarControllerSupportedInterfaceOrientations(tabBarController: UITabBarController) -> UIInterfaceOrientationMask
+    @available(iOS 7.0, *)
+    optional public func tabBarControllerPreferredInterfaceOrientationForPresentation(tabBarController: UITabBarController) -> UIInterfaceOrientation
+    
+    @available(iOS 7.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?
+    
+    @available(iOS 7.0, *)
+    optional public func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+}
+{% endhighlight %}  
+
+比如定义点击事件的Delegate eg：   
+
+{% highlight swift %}    
+//UITabBarControllerDelegate
+func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController){
+        print("didSelectViewController" + tabBarController.description)
+        print("didSelectViewController" + viewController.description)
+}
+
+func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool{
+    if(viewController.tabBarItem.tag == 1){
+        print("shouldSelectViewController")
+        return false;
+    }
+    
+    return true;
+}
+{% endhighlight %}  
+
+# customizableViewControllers:    
+提供了用户自定义的item的方式，当出现moreNavigationController时，可在moreNavigationController中看到右上角的Edit，点击Edit可以看到 customizableViewControllers定义的item，可以拖动这些item到tabBarController上，相当于手机桌面上电话、短信等的最近快捷方式。  
+
+![image]({{ site.attachment }}/posts/2015-12-18-_swift_practice_tabbarcontroller-img3.png)
