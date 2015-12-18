@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Cocoa-Swift实战-Readme"
+title: "Cocoa-Swift之序"
 description: ""
-category:'Cocoa Practice With Swift' 
+category:'Cocoa Swift' 
 tags: ['Cocoa Practice With Swift']
 ---
 {% include JB/setup %}
