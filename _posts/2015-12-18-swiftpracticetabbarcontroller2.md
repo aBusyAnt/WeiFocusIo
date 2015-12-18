@@ -15,7 +15,7 @@ Tabbar是最常见的一种布局结构，这种结构有一个最大的好处�
 
 # 一、基本使用:  
 
-1、一般UITabBarController是APP的基本结构，所以我们添加此基本结构一般2种方式:  
+一般UITabBarController是APP的基本结构，所以我们添加此基本结构一般2种方式:  
 
 + 如果使用代码可以在AppDelegate中实例化UITabBarController,并指定为window的rootViewController。  
 
