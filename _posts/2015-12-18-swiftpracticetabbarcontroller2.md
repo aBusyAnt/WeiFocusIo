@@ -77,7 +77,7 @@ public convenience init(tabBarSystemItem systemItem: UITabBarSystemItem, tag: In
 {% endhighlight %}  
 
 
-# 修改UITabBarController样式:   
+# 二、修改UITabBarController样式:   
 在修改其样式前，我们先看一下其UITabBar的定义中与颜色、背景图片、样式等外观相关的定义:    
 {% highlight swift %}  
 public class UITabBar : UIView {
@@ -174,7 +174,7 @@ tabBarController.tabBar.itemWidth  = 20
 
 ![image]({{ site.attachment }}/posts/2015-12-18-_swift_practice_tabbarcontroller-img2.png)
 
-#  UITabBarControllerDelegate  
+#  三、UITabBarControllerDelegate  
 
 {% highlight swift %}    
 public protocol UITabBarControllerDelegate : NSObjectProtocol {
@@ -223,7 +223,7 @@ func tabBarController(tabBarController: UITabBarController, shouldSelectViewCont
 }
 {% endhighlight %}  
 
-# customizableViewControllers:    
+# 四、customizableViewControllers:    
 提供了用户自定义的item的方式，当出现moreNavigationController时，可在moreNavigationController中看到右上角的Edit，点击Edit可以看到 customizableViewControllers定义的item，可以拖动这些item到tabBarController上，相当于手机桌面上电话、短信等的最近快捷方式。  
 
 ![image]({{ site.attachment }}/posts/2015-12-18-_swift_practice_tabbarcontroller-img3.png)
