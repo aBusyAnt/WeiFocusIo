@@ -93,7 +93,7 @@ func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> U
 }
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let identifierString = "identifierString"
-    var cell:UITableViewCell? = (tableView.dequeueReusableCellWithIdentifier(identifierString))
+    var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(identifierString)
     if(cell == nil){
         cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: identifierString)
     }
