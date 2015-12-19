@@ -102,7 +102,8 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
     return cell!
 }
 {% endhighlight %} 
-3、UITableViewDelegate 示例:  
+3、UITableViewDelegate 示例:
+{% highlight swift %}  
 // MARK: - UITableViewDelegate
 func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
     print("selected index:" , indexPath.row)
@@ -114,6 +115,7 @@ func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableV
         print("insert index:",indexPath.row)
     }
 }
+{% endhighlight %} 
 
 
 
