@@ -90,6 +90,8 @@ bounds = CGRect(x:0,y:0,view.frame.size.width,view.frame.size.height)
 二者的区别如下图所示:    
 ![image]({{ site.attachment }}/posts/2015-12-19-swiftpracticeviewcontrollerbaselayout-img1.jpg)
 
+我们在iOS7以后是全屏布局，所以状态栏会挡住视图，我们根据上面的topLayoutGuide & bottomLayoutGuide即可得到视图上下限制点并调整bounds即可使root view 得到相应的偏移。 
+
 
 
 
