@@ -64,10 +64,7 @@ print("self.bottomLayoutGuide.length:",self.bottomLayoutGuide.length)
 self.bottomLayoutGuide.length: 49.0   
 
 
-# frame & bounds
-
-
-在说ViewController的布局前，我们必须先要知道frame与bounds的区别:  
+# frame & bounds  
 
 * frame没有什么好讲的，就是相对于父视图的布局位置与大小:  
 > 比如一个view的 frame = CGRect(x:view.frame.origin.x,y:view.frame.origin.y,view.frame.size.width,view.frame.size.height)
