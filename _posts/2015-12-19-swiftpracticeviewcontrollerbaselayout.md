@@ -56,7 +56,8 @@ self.topLayoutGuide.length: 64.0
 self.topLayoutGuide.length: 44.0   
 {% endhighlight %} 
 
-bottomLayoutGuide表示Y轴的最低点限制，表示不希望被UITabbarController遮挡的视图最低点距离supviewlayout的距离。
+* bottomLayoutGuide表示Y轴的最低点限制，表示不希望被UITabbarController遮挡的视图最低点距离supviewlayout的距离。
+
 即当无UITabbarController时，距离为0，有UITabbarController时距离为49:  
 
 我们同样可以根据类似的实验，得到bottomLayoutGuide在UITabbarController的影响下的结果:  
