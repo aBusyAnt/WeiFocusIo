@@ -81,10 +81,11 @@ self.bottomLayoutGuide.length: 49.0
 # frame & bounds  
 
 * frame没有什么好讲的，就是相对于父视图的布局位置与大小:  
+
 > 比如一个view的 frame = CGRect(x:view.frame.origin.x,y:view.frame.origin.y,view.frame.size.width,view.frame.size.height)
 
-* bounds与frame最大的不同就是坐标系不同，bounds原点始终是(0,0)，而frame的原点则不一定，而是相对于其父视图的坐标。   
-二者的区别如下图所示:  
+* bounds与frame最大的不同就是坐标系不同，bounds原点始终是(0,0)，而frame的原点则不一定，而是相对于其父视图的坐标。     
+二者的区别如下图所示:    
 ![image]({{ site.attachment }}/posts/2015-12-19-swiftpracticeviewcontrollerbaselayout-img1.jpg)
 
 
