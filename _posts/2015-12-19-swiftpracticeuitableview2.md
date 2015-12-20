@@ -12,8 +12,10 @@ UITableView使用率非常高，而其使用中最重要的一点就是自定Cel
 <!--more-->
 
 # 一、使用IB自定义Cell   
-1、在IB中新建UITableViewCell，选中新建xib，命名为CustomCell 并在其上添加各种控件，eg:  
+1、在IB中新建UITableViewCell，选中新建xib，命名为CustomCell 并在其上添加各种控件，eg: 
+
 ![image]({{ site.attachment }}/posts/2015-12-19-swiftpracticeuitableview2-img1.png)
+
 2、在IB中添加IBOutlet,并设置其类为CustomCell。
 
 {% highlight swift %}   
