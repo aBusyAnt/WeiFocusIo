@@ -66,6 +66,18 @@ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexP
 }
 {% endhighlight %}   
 
+使用IB创建的Cell的其它方式:    
+{% highlight swift %}   
+let nib = UINib(nibName: "CustomCell", bundle: NSBundle.mainBundle())
+let obs:Array = nib.instantiateWithOwner(self, options: nil) as Array
+cell = obs[0] as? CustomCell
+{% endhighlight %}   
+
+# 使用代码创建无xib的Cell:   
+
+
+
+
 
 
 
