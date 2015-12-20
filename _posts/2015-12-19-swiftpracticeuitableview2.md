@@ -23,12 +23,12 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     ......
-	extension CustomCell{
-	    func updateCustomCellWithOb(ob:CustomOb){
-	        descriptionLabel.text = ob.blogDescription
-	        locationLabel.text = ob.authorLocation
-	    }
-	}
+}
+extension CustomCell{
+    func updateCustomCellWithOb(ob:CustomOb){
+        descriptionLabel.text = ob.blogDescription
+        locationLabel.text = ob.authorLocation
+    }
 }
 {% endhighlight %}   
 
