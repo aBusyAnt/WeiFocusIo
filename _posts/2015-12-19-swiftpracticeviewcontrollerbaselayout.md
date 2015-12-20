@@ -45,7 +45,26 @@ self.topLayoutGuide.length: 64.0
 结果：  
 self.topLayoutGuide.length: 44.0   
 
+bottomLayoutGuide表示Y轴的最低点限制，表示不希望被UITabbarController遮挡的视图最低点距离supviewlayout的距离。
+即当无UITabbarController时，距离为0，有UITabbarController时距离为49:  
 
+我们同样可以根据类似的实验，得到bottomLayoutGuide在UITabbarController的影响下的结果:  
+无UITabbarController时，为0，有时为49.0:  
+我们在AppDelegate中添加:  
+{% highlight swift %}   
+let tabBarController = UITabBarController()
+tabBarController.viewControllers = Array(arrayLiteral: ViewController())
+self.window?.rootViewController = tabBarController
+{% endhighlight %} 
+在ViewController中添加debug信息:   
+{% highlight swift %}   
+print("self.bottomLayoutGuide.length:",self.bottomLayoutGuide.length)
+{% endhighlight %}   
+结果：  
+self.bottomLayoutGuide.length: 49.0   
+
+
+# frame & bounds
 
 
 在说ViewController的布局前，我们必须先要知道frame与bounds的区别:  
