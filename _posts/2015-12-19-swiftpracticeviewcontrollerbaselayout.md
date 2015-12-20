@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cocoa-Swift之UIViewController基本布局Tips"
+title: "Cocoa-Swift之UIViewController布局Tips"
 description: ""
 category: 'Cocoa-Swift'
 tags: ['Cocoa-Swift']
@@ -9,6 +9,7 @@ tags: ['Cocoa-Swift']
 本文是UIViewController布局的一些注意事项与技巧。  
 
 <!--more-->
+
 # topLayoutGuide & bottomLayoutGuide  
 
 先了解一下UIViewController的2个默认约束:  
@@ -22,10 +23,12 @@ extension UIViewController {
 }
 {% endhighlight %} 
 iOS7以后，ViewController的root view全屏了，所以Status Bar将会覆盖在其上，而同时apple也提供了以上2个扩展属性:  
+
 * topLayoutGuide表示Y轴的最高点限制，表示不希望被Status Bar或Navigation Bar遮挡的视图最高位置。    
-1、如果没有状态栏，也没有导航栏，topLayoutGuide.length则为0
-2、如果只Status Bar，则topLayoutGuide.length为状态栏高度，目前为20。  
-3、如果只有Navigation Bar，则topLayoutGuide.length为导航栏高度，目前为44。  
+
+1、如果没有状态栏，也没有导航栏，topLayoutGuide.length则为0  
+2、如果只Status Bar，则topLayoutGuide.length为状态栏高度，目前为20。    
+3、如果只有Navigation Bar，则topLayoutGuide.length为导航栏高度，目前为44。   
 4、如果二者都有，则topLayoutGuide.length为二者的高度，目前为20+44=64。  
 
 我们做个实验即可得到上面的的结果:  
@@ -34,16 +37,24 @@ iOS7以后，ViewController的root view全屏了，所以Status Bar将会覆盖�
 print("self.topLayoutGuide.length:",self.topLayoutGuide.length)
 {% endhighlight %} 
 结果：  
+{% highlight swift %}  
 self.topLayoutGuide.length: 0.0    
+{% endhighlight %} 
 2、创建一个有状态栏时的ViewController：  
 结果：  
+{% highlight swift %}  
 self.topLayoutGuide.length: 20.0   
+{% endhighlight %} 
 3、创建一个有状态栏，并将ViewController加入UINavigationController导航栈:  
 结果：  
+{% highlight swift %}  
 self.topLayoutGuide.length: 64.0   
+{% endhighlight %} 
 4、无状态栏时，只有导航栏时:  
 结果：  
+{% highlight swift %}  
 self.topLayoutGuide.length: 44.0   
+{% endhighlight %} 
 
 bottomLayoutGuide表示Y轴的最低点限制，表示不希望被UITabbarController遮挡的视图最低点距离supviewlayout的距离。
 即当无UITabbarController时，距离为0，有UITabbarController时距离为49:  
@@ -61,7 +72,9 @@ self.window?.rootViewController = tabBarController
 print("self.bottomLayoutGuide.length:",self.bottomLayoutGuide.length)
 {% endhighlight %}   
 结果：  
+{% highlight swift %}   
 self.bottomLayoutGuide.length: 49.0   
+{% endhighlight %}   
 
 
 # frame & bounds  
