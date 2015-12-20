@@ -74,11 +74,6 @@ self.bottomLayoutGuide.length: 49.0
 ![image]({{ site.attachment }}/posts/2015-12-19-swiftpracticeviewcontrollerbaselayout-img1.jpg)
 
 
-self.view.frame: {{0, 0}, {320, 568}}
-self.view.bounds: {{0, 0}, {320, 568}}
-self.topLayoutGuide.length: 0.0
-self.bottomLayoutGuide.length: 0.0 
-
 
 
 
