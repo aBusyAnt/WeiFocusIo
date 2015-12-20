@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cocoa-Swift之UITableView相关(一)"
+title: "Cocoa-Swift之UITableView相关一(基本使用)"
 description: ""
 category: 'Cocoa-Swift'
 tags: ['Cocoa-Swift']
@@ -13,6 +13,7 @@ UITableView是iOS开发中最常见的布局展示容器，是各种复杂布局
 3、实现dataSource方法，实现delegate方法。    
 
 <!--more-->
+
 1、创建TableView:  
 {% highlight swift %}  
 let tableView = UITableView(frame: CGRect(x: 0, y:0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableViewStyle.Plain)
@@ -20,6 +21,19 @@ tableView.delegate = self
 tableView.dataSource = self
 self.view.addSubview(tableView)
 {% endhighlight %} 
+我们看到TableView显示在Status Bar下面，我们需要将其下移 状态栏Bootm高度：   
+
+
+
+{% highlight swift %}  
+- (void) viewDidLayoutSubviews {
+    CGRect viewBounds = self.view.bounds;
+    CGFloat topBarOffset = self.topLayoutGuide.length;
+    viewBounds.origin.y = topBarOffset * -1;
+    self.view.bounds = viewBounds;
+}
+{% endhighlight %} 
+
 
 2、DataSource示例:  
 {% highlight swift %}  
