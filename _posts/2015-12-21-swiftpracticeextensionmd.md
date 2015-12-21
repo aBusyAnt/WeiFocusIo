@@ -9,6 +9,7 @@ tags: ['Cocoa-Swift']
 在OC中我们使用Category提高的代码的规范，减少了冗余，在swift中虽然不再有Category了，但是有了类似功能的Extension，相比于Category而言，Extension没有名称，而且不能定义存储属性（当然我们可以使用runtime解决，稍后会讲到）。
 
 <!--more-->
+
 Extensions可以扩展的内容包括:   
 + 添加计算型属性和计算静态属性  
 + 定义实例方法和类型方法  
@@ -45,7 +46,10 @@ let cell = CustomCell(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
 let defaultHeight = cell.defaulHeight
 print("default height:\(defaultHeight)")
 {% endhighlight %}   
-# 存储属性，虽然我们前面已经讲到了，默认的extension不支持存储属性，我们来试一下：  
+
+# 存储属性  
+
+虽然我们前面已经讲到了，默认的extension不支持存储属性，我们来试一下：  
 {% highlight swift %}  
 //CustomCell   
 extension CustomCell{
@@ -92,7 +96,7 @@ cell.location = "成都市高新区"
 print("cell.name:\(cell.name),cell.location:\(cell.location)")
 {% endhighlight %}   
 
-以上就是一个最基本的使用Runtime给Extension添加存储属性的示例，其中objc_getAssociatedObject与objc_setAssociatedObject中都会用到一个关联key，可以把其想作是KVC的那种思想，为了不对整个类和命名空间(即模块)导致污染，使用这种私有嵌套结构体的方式是业内大牛们推荐的方式，OK，我们再看一下这两个runtime的文档:  
+以上就是一个最基本的使用Runtime给Extension添加存储属性的示例，其中objc_getAssociatedObject与objc_setAssociatedObject中都会用到一个关联key，可以把其想作是KVC的那种思想，为了不对整个类和命名空间(即模块)导致污染，使用这种私有嵌套结构体的方式是业内大牛们推荐的方式，OK，我们再看一下runtime的文档:  
 {% highlight swift %} 
  /** 
  * Sets an associated value for a given object using a given key and association policy.
@@ -122,7 +126,7 @@ public func objc_setAssociatedObject(object: AnyObject!, _ key: UnsafePointer<Vo
 public func objc_getAssociatedObject(object: AnyObject!, _ key: UnsafePointer<Void>) -> AnyObject!
 {% endhighlight %}   
 
-# 构造方法Initializers   
+# 构造器Initializers   
 {% highlight swift %} 
 //CustomCell
 extension CustomCell{
@@ -169,11 +173,12 @@ extension CustomOb{
     }
 } 
 {% endhighlight %}    
-以上这样对CustomOb进行扩展，无法使用mutating进行实例修改，直接报错:    
+以上这样对CustomOb进行扩展，无法使用mutating进行实例修改，直接报错:  
+
 > 'mutating' isn't valid on methods in classes or class-bound protocols
 
 # 下标(Subscripts)  
-如果对Subscripts不太熟悉的同学，可以查看[Cocoa-Swift之Subscripts](({{ site.posts }}/2015-12-21-swiftpracticesubscripts.md)
+如果对Subscripts不太熟悉的同学，可以查看[Cocoa-Swift之Subscripts]()
 
 {% highlight swift %}  
 //CustomOb
