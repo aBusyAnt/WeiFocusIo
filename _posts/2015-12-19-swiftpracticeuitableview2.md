@@ -74,9 +74,70 @@ cell = obs[0] as? CustomCell
 {% endhighlight %}   
 
 # 使用代码创建无xib的Cell:   
+若复用cell使用如下方式则必须需要先注册cell:   
+{% highlight swift %}   
+public func dequeueReusableCellWithIdentifier(identifier: String, forIndexPath indexPath: NSIndexPath) -> UITableViewCell 
+// newer dequeue method guarantees a cell is returned and resized properly, assuming identifier is registered
+{% endhighlight %}   
+1、创建一个自定义Cell:  
+{% highlight swift %}   
+class CustomCell: UITableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style:style , reuseIdentifier:reuseIdentifier)
+        initGui()
+    }
+    init(defaultHeight:Float,reuseIdentifier:String){
+        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
+        initGui()
+    }
+    var nameLabel:UILabel = UILabel(frame: CGRectZero)
+    var locationLabel:UILabel = UILabel(frame: CGRectZero)
+    func initGui(){
+        nameLabel.frame = CGRect(x: 5, y: 5, width: 100, height: 20)
+        nameLabel.font = UIFont.systemFontOfSize(14)
+        nameLabel.textColor = UIColor.blackColor()
+        self.contentView.addSubview(nameLabel)
+        
+        locationLabel.frame = CGRect(x: 5, y: 30, width: 100, height: 20)
+        locationLabel.font = UIFont.systemFontOfSize(12)
+        locationLabel.textColor = UIColor.lightGrayColor()
+        self.contentView.addSubview(locationLabel)
+    }
+}
+{% endhighlight %}   
 
 
 
+2、注册cell:   
+{% highlight swift %}   
+let cellIdentifier:String = "reuseIdentifier"
+self.tableView.registerClass(CustomCell.self, forCellReuseIdentifier: cellIdentifier) 
+{% endhighlight %}   
+
+3、cellForRowAtIndexPath:  
+{% highlight swift %}   
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let  cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! CustomCell
+    cell.nameLabel.text = "Cell name -\(indexPath.row)"
+    cell.locationLabel.text = "Cell location-\(indexPath.row)"
+    return cell
+}
+{% endhighlight %}   
+
+直接使用dequeueReusableCellWithIdentifier，则不需要提前注册cell:  
+
+{% highlight swift %}   
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let reuseIdentifier:String = "reuseIdentifier"
+    var cell:CustomCell? = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? CustomCell
+    if(cell == nil){
+        cell = CustomCell(defaultHeight: 60.0, reuseIdentifier: reuseIdentifier)
+    }
+    cell!.nameLabel.text = "Cell name -\(indexPath.row)"
+    cell!.locationLabel.text = "Cell location-\(indexPath.row)"
+    return cell!
+}
+{% endhighlight %}   
 
 
 
