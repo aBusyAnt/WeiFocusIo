@@ -10,13 +10,13 @@ tags: ['Cocoa-Swift']
 
 <!--more-->
 
-Extensions可以扩展的内容包括:   
-+ 添加计算型属性和计算静态属性  
-+ 定义实例方法和类型方法  
-+ 提供新的构造器  
-+ 定义下标  
-+ 定义和使用新的嵌套类型  
-+ 使一个已有类型符合某个接口  
+Extensions可以扩展的内容包括:    
++ 添加计算型属性和计算静态属性    
++ 定义实例方法和类型方法     
++ 提供新的构造器     
++ 定义下标    
++ 定义和使用新的嵌套类型    
++ 使一个已有类型符合某个接口    
 
 
 # 基本语法  
@@ -238,6 +238,19 @@ class CustomOb: NSObject {
 //test
 let customOb = CustomOb(name: "Grey.Luo", location:"成都高新" ,group: nil)
 print("customOb.Sex:\(customOb.sex)")
+{% endhighlight %}    
+
+# 协议(Protocol):    
+{% highlight swift %}  
+protocol CustomObProtocol{
+    func protocolFun(age:Int,company:String)->Bool
+}
+extension CustomOb:CustomObProtocol{
+    func protocolFun(age: Int, company: String) -> Bool {
+        print("age:\(age),company:\(company)")
+        return true
+    }
+}
 {% endhighlight %}    
 
 参考：  
