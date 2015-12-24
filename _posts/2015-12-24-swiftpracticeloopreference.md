@@ -195,6 +195,6 @@ protocol DetailModifiedProtocol:NSObjectProtocol{
 参考：  
 本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
 
-> * [Objective-C之内存管理](http://www.cnblogs.com/kenshincui/p/3870325.html)
+> * [Objective-C之内存管理](http://www.cnblogs.com/kenshincui/p/3870325.html)  
 > * [Swift Tips](http://swifter.tips/retain-cycle/)
 
