@@ -25,23 +25,26 @@ ARC优化器即对前面做的工作的优化，删除冗余调用。
 
 # 属性参数  
 
-1、原子性:   
-* atomic（default）:  对属性加锁，保证多线程安全。  
-* nonatomic :  不对属性加锁，不保证线程安全。  
+1、原子性:    
 
-2、读写属性:  
-* readwrite(default) : 会生成getter、setter方法。  
-* readonly : 只生成getter方法。  
+* atomic（default）:  对属性加锁，保证多线程安全。      
+* nonatomic :  不对属性加锁，不保证线程安全。      
 
-3、引用计数描述 :     
-* assign :     
-  一般适用于普通的非对象成员，其实就是简单的指针赋值，并不会涉及到引用计数，而且如果指向类，则最终需要赋值为nil，否则会有野指针。  
-* retain : 
-  强引用，类成员若有此申明，则需要在dealloc中引用计数要减少。在ARC中已经被deprecated，对应于strong  
-* strong : 
-  强引用。   
-* weak: 
-  弱引用 ，即持有并不导致引用计数增加，最终也无需assign那样需要赋值为nil。  
+2、读写属性:   
+
+* readwrite(default) : 会生成getter、setter方法。      
+* readonly : 只生成getter方法。    
+
+3、引用计数描述 :   
+
+* assign :       
+  一般适用于普通的非对象成员，其实就是简单的指针赋值，并不会涉及到引用计数，而且如果指向类，则最终需要赋值为nil，否则会有野指针。    
+* retain :    
+  强引用，类成员若有此申明，则需要在dealloc中引用计数要减少。在ARC中已经被deprecated，对应于strong    
+* strong :    
+  强引用。      
+* weak:    
+  弱引用 ，即持有并不导致引用计数增加，最终也无需assign那样需要赋值为nil。    
 
 >  我们看到我们使用xib/storyboard创建控件时，引用的IBOutlet大都是weak的，因为view本身已经持有了这些控件，所以这些IBOutlet的生命周期与view就是一致的了。我们在IB中创建的控件 ，其实第一个持有者都是File's owner。
 
