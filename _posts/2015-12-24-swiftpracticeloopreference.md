@@ -107,9 +107,9 @@ person = nil
 
 结果:   
 
-> person.name:Grey,company.name:Optional("Weifocus")  
-> Grey is being deinitialied  
-> Company Weifocus is being deinitialied  
+> person.name:Grey,company.name:Optional("Weifocus")    
+> Grey is being deinitialied    
+> Company Weifocus is being deinitialied    
 
 结果依然正确，我们再把company中的ceo赋值为person试一下:  
 
@@ -126,21 +126,21 @@ person = nil
 > person.name:Grey,company.name:Optional("Weifocus")
 
 最后一种情况就是一个最明显的循环引用,person与company均没有被释放，这一块内存变成游离状态。
-如果解决呢？很简单，我们在Company的ceo加一个weak描述即可。  
+如何解决呢？很简单，我们在Company的ceo加一个weak描述即可。  
 {% highlight swift %}    
 weak var ceo:Person?
 {% endhighlight %}   
 
 结果：
 
-> person.name:Grey,company.name:Optional("Weifocus")  
-> Grey is being deinitialied   
-> Company Weifocus is being deinitialied   
+> person.name:Grey,company.name:Optional("Weifocus")    
+> Grey is being deinitialied     
+> Company Weifocus is being deinitialied     
 
 > 在swift中也引入了unowned,也就是原来OC中_unretained,    
 > 概念基本上是一样的，但是使用unowned修饰的变量不能是可选变量Optional，即其值不能为nil,  
 > 当其引用的对象如果被释放了，它并不会自动置为nil,还是会继续指向这个无效的引用,当访问这个无效的引用时自然就会crash,  
-> 当我们明确引用的对象并不会在访问时被释放，则可以使用unowned，否则有被释放的可能时就使用weak，以保证安全。    
+> 当我们确定引用的对象并不会在访问时被释放，则可以使用unowned，否则有被释放的可能时就使用weak，以保证安全。    
 
 
 现在我们再来看一下其它常见的几种循环引用问题:  
@@ -192,5 +192,9 @@ protocol DetailModifiedProtocol:NSObjectProtocol{
 + NSTimer: 
 
 
-http://www.cnblogs.com/kenshincui/p/3870325.html
-http://swifter.tips/retain-cycle/
+参考：  
+本文主要用于一个知识的归纳总结，过程中可能会引用到其它地方的文字或代码，如有侵权请及时联系我，在此对写作过程中参考了的文章作者表示感谢！ 
+
+> * [Objective-C之内存管理](http://www.cnblogs.com/kenshincui/p/3870325.html)
+> * [Swift Tips](http://swifter.tips/retain-cycle/)
+
