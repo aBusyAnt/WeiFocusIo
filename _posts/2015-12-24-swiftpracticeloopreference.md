@@ -133,9 +133,9 @@ weak var ceo:Person?
 
 结果：
 
-> person.name:Grey,company.name:Optional("Weifocus")
-> Grey is being deinitialied
-> Company Weifocus is being deinitialied
+> person.name:Grey,company.name:Optional("Weifocus")  
+> Grey is being deinitialied   
+> Company Weifocus is being deinitialied   
 
 > 在swift中也引入了unowned,也就是原来OC中_unretained,    
 > 概念基本上是一样的，但是使用unowned修饰的变量不能是可选变量Optional，即其值不能为nil,  
