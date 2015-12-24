@@ -107,9 +107,9 @@ person = nil
 
 结果:   
 
-> person.name:Grey,company.name:Optional("Weifocus")
-> Grey is being deinitialied
-> Company Weifocus is being deinitialied
+> person.name:Grey,company.name:Optional("Weifocus")  
+> Grey is being deinitialied  
+> Company Weifocus is being deinitialied  
 
 结果依然正确，我们再把company中的ceo赋值为person试一下:  
 
