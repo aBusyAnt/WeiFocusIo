@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Cocoa-Swift之循环引用"
+title: "Cocoa-Swift之循环引用二"
 description: ""
 category: 'Cocoa-Swift'
 tags: ['Cocoa-Swift']
@@ -8,7 +8,7 @@ tags: ['Cocoa-Swift']
 {% include JB/setup %}
 
 在iOS开发中我们经常会遇到循环引用的问题，我们本篇就专门针对循环引用一起探讨一下。
-
+可以结合[闭包中的内存泄漏陷阱](http://grayluo.github.io/WeiFocusIo/swift/2014/12/21/closuresmemoryleaks/)阅读本文。  
 <!--more-->
 
 # 内存管理基本概论  
@@ -183,13 +183,75 @@ protocol DetailModifiedProtocol:NSObjectProtocol{
 {% endhighlight %} 
  
 + Block闭包:  
-闭包中如果使用了外面的对象，则会自动持有，比如最常见的self，比如self持有闭包，而闭包中又使用了self，所以就持有了self，这样就导致了循环引用。  
+闭包中如果使用了外面的变量，都是copy的（浅拷贝），则会自动持有，属于强引用，比如最常见的self，比如self持有闭包，而闭包中又使用了self，所以就持有了self，这样就导致了self->block->self的循环引用。   
+{% highlight swift %}    
+class Person {
+    let name:String
+    init(theNewName:String){
+        self.name = theNewName
+    }
+    lazy var description: ()->() = {
+        print("Person.name : \(self.name)")
+    }
+    deinit{
+        print("\(name) is being deinitialied")
+    }
+}
+{% endhighlight %} 
+
+{% highlight swift %}    
+let person = Person(theNewName:"Grey")
+person.description()
+{% endhighlight %} 
+定义一个闭包description，在其中引用了self,而self本身又持有description，所以成了循环引用。则person对象始终无法被释放。  
+
+解决方法一样使用weak或者unowned即可:   
+{% highlight swift %}    
+lazy var description: ()->() = {
+    [weak self] in
+    print("Person.name : \(self!.name)")
+}
+{% endhighlight %} 
+
+使用unowned:  
+
+{% highlight swift %}    
+lazy var description: ()->() = {
+    [unowned self] in
+    print("Person.name : \(self.name)")
+}
+{% endhighlight %} 
 
 
++ NSTimer:   
+其实使用NSTimer一般正常的使用并不会导致循环引用，因为只要NSTimer能够正常的停止就可以打破循环，释放资源。   
+{% highlight swift %}    
+class Person {
+    let name:String
+    var timer:NSTimer?
+    var tick:Int = 0
+    @objc func timerFun(){
+        print("timeFun...")
+        while(tick++ < 10){
+            timer?.invalidate()
+            print("timeFun invalidate()...")
+        }
+    }
+    init(theNewName:String){
+        self.name = theNewName
+    }
+    func test(){
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:Selector("timerFun"), userInfo: nil, repeats: true)
+    }
+    deinit{
+        print("\(name) is being deinitialied")
+    }
+}
+{% endhighlight %} 
+这是一个最基本的使用，self引用了timer，timer的delegate又引用了self，所以即便person已经超过了作用域，应该被释放才对，但是由于timer还持有self,所以self无法被释放。  
+只有当timer停止时，timer释放后，self也就释放了。所以一定要确保timer能够正常的停止。也可以把timer持有的delegate : self 换成其它不需要开发者或者编译器进行内存管理的对象，即把delegate交给系统进行管理释放。  
 
 
-
-+ NSTimer: 
 
 
 参考：  
