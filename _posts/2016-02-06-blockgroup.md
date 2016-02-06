@@ -145,9 +145,10 @@ dispatch_group_notify(_blockTaskGroup, dispatch_get_global_queue(DISPATCH_QUEUE_
 >  dispatch_group_enter 必须要与 dispatch_group_leave 一一对应，如果缺少了dispatch_group_leave，则这个block将永远在group中无法结束。与dispatch_group_notify类似的是还有一个dispatch_group_wait,是同步的，即调用的线程会阻塞，所有group中的任务结束，也就是dispatch_group_wait回调执行后，后续代码才会继续执行。
 
 
+更详细的介绍请参考： 
 
-
-
+[Let's Build Dispatch Groups](https://mikeash.com/pyblog/friday-qa-2013-08-16-lets-build-dispatch-groups.html)，
+[翻译](http://www.cocoachina.com/programmer/20130830/6901.html)
 
 
 
