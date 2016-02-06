@@ -141,10 +141,8 @@ dispatch_group_notify(_blockTaskGroup, dispatch_get_global_queue(DISPATCH_QUEUE_
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_4.png)    
 
 其实就是利用Dispatch Groups手动管理block的特性。需要注意的是：
->  dispatch_group_enter 必须要与 dispatch_group_leave 一一对应，如果缺少了dispatch_group_leave，则这个block将永远在group中无法结束。
 
-
-与dispatch_group_notify类似的是还有一个dispatch_group_wait,是同步的，即调用的线程会阻塞，知道所有的group任务结束才会继续执行。
+>  dispatch_group_enter 必须要与 dispatch_group_leave 一一对应，如果缺少了dispatch_group_leave，则这个block将永远在group中无法结束。与dispatch_group_notify类似的是还有一个dispatch_group_wait,是同步的，即调用的线程会阻塞，知道所有的group任务结束才会继续执行。
 
 
 
