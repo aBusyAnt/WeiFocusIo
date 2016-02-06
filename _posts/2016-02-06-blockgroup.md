@@ -77,9 +77,12 @@ typedef void (^RequestCompleted)(id object);
 {% endhighlight %}
 
 很简单的一个示例，就是2个方法，其内部又调用了异步代码块，我们看一下执行的结果:  
+
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_1.png)
+
 从结果中我们可以看到方法很块就返回了，并不会等待异步代码块结束，所以我们只有捕获异步块的结束才能达到我们的目地。
 我们根据[多线程编程](http://grayluo.github.io/WeiFocusIo/foundation/2015/12/10/thread/)一章中的dispatch_group_notify与NSBlockOperation可以得到启示:  
+
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_2.png)  
 
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_3.png)  
