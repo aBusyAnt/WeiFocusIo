@@ -12,11 +12,8 @@ tags: ['foundation']
 
 <!--more-->
 
-我们先定义一个示例：
+我们先定义一个示例：  
 {% highlight Objective-C %}
-
-{{ ASSET_PATH }}
-
 typedef void (^RequestCompleted)(id object);
 
 @interface Client : NSObject
