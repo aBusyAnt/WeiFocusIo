@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AsynchronousBlockGroup"
+title: "Asynchronous Block Group"
 description: ""
 category: 'foundation'
 tags: ['foundation']
