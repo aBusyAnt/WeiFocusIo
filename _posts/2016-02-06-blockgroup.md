@@ -13,7 +13,9 @@ tags: ['foundation']
 <!--more-->
 
 我们先定义一个示例：  
+
 {% highlight Objective-C %}
+
 typedef void (^RequestCompleted)(id object);
 
 @interface Client : NSObject
@@ -87,6 +89,7 @@ typedef void (^RequestCompleted)(id object);
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_3.png)  
 
 我们改造一下:
+
 {% highlight Objective-C %}
 - (void)func1:(BOOL)isRefresh{
     //...
@@ -137,6 +140,7 @@ dispatch_group_notify(_blockTaskGroup, dispatch_get_global_queue(DISPATCH_QUEUE_
 {% endhighlight %}
 
 我们再看一下运行结果：  
+
 ![image]({{ site.attachment }}/posts/2016-02-06-blockgroup_4.png)    
 
 其实就是利用Dispatch Groups手动管理block的特性。需要注意的是：
